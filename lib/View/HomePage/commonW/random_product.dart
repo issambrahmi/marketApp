@@ -18,7 +18,7 @@ class RandomProduct extends StatelessWidget {
         childAspectRatio: 0.6,
       ),
       itemBuilder: (context, index) {
-        return const ProductCard();
+        return const ProductCartHome();
       },
     );
   }

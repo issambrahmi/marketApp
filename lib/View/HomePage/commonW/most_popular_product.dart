@@ -22,7 +22,7 @@ class MostPopularProduct extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             separatorBuilder: (context, index) => SizedBox(width: 12.w),
             itemBuilder: (context, index) {
-              return const ProductCard();
+              return const ProductCartHome();
             },
           ),
         )
