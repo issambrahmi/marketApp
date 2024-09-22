@@ -14,8 +14,8 @@ class ProductCartCard extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(width: 0.5)),
+        borderRadius: BorderRadius.circular(15),
+      ),
       child: Row(
         children: [
           Container(
@@ -125,12 +125,12 @@ class ProductCartCard extends StatelessWidget {
                           controller: qnt,
                           keyboardType: TextInputType.number,
                           textAlign: TextAlign.center,
-                          decoration:  InputDecoration(
-                            border: InputBorder.none,
-                            fillColor: AppColor.mainScreencolor,
-                            contentPadding: EdgeInsets.only(bottom: 10.h)
-                           // filled: true
-                          ),
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              fillColor: AppColor.mainScreencolor,
+                              contentPadding: EdgeInsets.only(bottom: 10.h)
+                              // filled: true
+                              ),
                         )),
                     SizedBox(width: 8.w),
                     Container(

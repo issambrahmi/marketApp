@@ -13,9 +13,9 @@ class RandomProduct extends StatelessWidget {
       itemCount: 10,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 10.w,
+        crossAxisSpacing: 20.w,
         mainAxisSpacing: 10.h,
-        childAspectRatio: 0.6,
+        childAspectRatio: 0.8,
       ),
       itemBuilder: (context, index) {
         return const ProductCartHome();

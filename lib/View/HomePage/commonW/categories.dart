@@ -16,7 +16,7 @@ class HomePageCategories extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
         SizedBox(
-          height: 100.h,
+          height: 35.h,
           child: ListView.separated(
             itemCount: 10,
             scrollDirection: Axis.horizontal,
@@ -36,22 +36,34 @@ class CCategorieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 60.h,
-          width: 60.h,
-          padding: EdgeInsets.all(4.sp),
-          decoration: BoxDecoration(
-            color: AppColor.greencolor.withOpacity(0.3),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Center(
-            child: Image.asset('assets/images/fruit.jpg'),
-          ),
-        ),
-        const Text('fruit')
-      ],
+    return Container(
+      
+      padding: EdgeInsets.all(8.sp),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: AppColor.mainScreencolor,
+      ),
+      child: Text(
+        'Boisson',
+        style: TextStyle(fontSize: 14.sp),
+      ),
     );
+    //  Column(
+    //   children: [
+    //     Container(
+    //       height: 60.h,
+    //       width: 60.h,
+    //       padding: EdgeInsets.all(4.sp),
+    //       decoration: BoxDecoration(
+    //         color: AppColor.greencolor.withOpacity(0.3),
+    //         borderRadius: BorderRadius.circular(10),
+    //       ),
+    //       child: Center(
+    //         child: Image.asset('assets/images/fruit.jpg'),
+    //       ),
+    //     ),
+    //     const Text('fruit')
+    //   ],
+    // );
   }
 }

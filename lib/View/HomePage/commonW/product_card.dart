@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:market_app/Core/app_color.dart';
+import 'package:market_app/Shared%20widgets/product_qnt_dialogue.dart';
 
 class ProductCartHome extends StatelessWidget {
   const ProductCartHome({super.key});
@@ -8,13 +9,13 @@ class ProductCartHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200.h,
+      width: 130.sp,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 110.sp,
-            width: 130.sp,
+            height: 110.h,
+            width: 200.sp,
             padding: EdgeInsets.all(5.sp),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -38,7 +39,6 @@ class ProductCartHome extends StatelessWidget {
           ),
           SizedBox(height: 8.h),
           SizedBox(
-            width: 130.sp,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -49,17 +49,20 @@ class ProductCartHome extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Container(
-                  height: 28.sp,
-                  width: 28.sp,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(60),
-                      border: Border.all(color: AppColor.greencolor)),
-                  child: Center(
-                    child: Icon(
-                      Icons.add,
-                      color: AppColor.greencolor,
-                      size: 20.sp,
+                GestureDetector(
+                  onTap: () => showAnimatedDialog(context),
+                  child: Container(
+                    height: 28.sp,
+                    width: 28.sp,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(60),
+                        border: Border.all(color: AppColor.greencolor)),
+                    child: Center(
+                      child: Icon(
+                        Icons.add,
+                        color: AppColor.greencolor,
+                        size: 20.sp,
+                      ),
                     ),
                   ),
                 )

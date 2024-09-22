@@ -16,7 +16,7 @@ class MostPopularProduct extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
          SizedBox(
-          height: 200.h,
+          height: 190.h,
           child: ListView.separated(
             itemCount: 10,
             scrollDirection: Axis.horizontal,
