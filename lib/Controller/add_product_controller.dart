@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 
 class AddProductController extends GetxController {
   String selectedPriceOption = 'Per Unit';
+  
   int quanity = 1;
+  late int totalPrice;
   late TextEditingController quantityController;
 
   @override

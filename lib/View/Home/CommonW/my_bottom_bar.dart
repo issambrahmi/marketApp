@@ -40,42 +40,6 @@ class _MyBottomAppBarState extends State<MyBottomAppBar>
                             : Colors.black54,
                         BlendMode.srcIn)),
               ),
-              // Tab(
-              //     icon: SizedBox(
-              //   height: double.infinity.h,
-              //   width: 40.w,
-              //   child: Center(
-              //     child: Stack(
-              //       children: [
-              //         Center(
-              //           child: SvgPicture.asset('assets/icons/cart.svg',
-              //               height: 25.h,
-              //               width: 25.w,
-              //               colorFilter: ColorFilter.mode(
-              //                   controller.currentIndex == 1
-              //                       ? AppColor.greencolor
-              //                       : Colors.black54,
-              //                   BlendMode.srcIn)),
-              //         ),
-              //         Container(
-              //           height: 15.sp,
-              //           width: 15.sp,
-              //           margin: EdgeInsets.only(top: 8.h, left: 3.w),
-              //           decoration: BoxDecoration(
-              //               borderRadius: BorderRadius.circular(50),
-              //               color: AppColor.greencolor),
-              //           child: Center(
-              //             child: Text(
-              //               '122',
-              //               style:
-              //                   TextStyle(fontSize: 10.sp, color: Colors.white),
-              //             ),
-              //           ),
-              //         )
-              //       ],
-              //     ),
-              //   ),
-              // )),
               Tab(
                 icon: SvgPicture.asset('assets/icons/search.svg',
                     height: 25.h,

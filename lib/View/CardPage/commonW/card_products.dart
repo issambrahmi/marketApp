@@ -12,7 +12,7 @@ class CardProducts extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: 4,
-      separatorBuilder: (context, index) => const Divider(),
+      separatorBuilder: (context, index) =>  SizedBox(height: 12.h),
       itemBuilder: (BuildContext context, int index) {
         return const ProductCartCard();
       },

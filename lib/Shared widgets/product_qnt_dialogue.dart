@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:market_app/Controller/add_product_controller.dart';
 import 'package:market_app/Core/app_color.dart';
+import 'package:market_app/Shared%20widgets/app_button.dart';
 
 void showAnimatedDialog(BuildContext context) {
   String selectedPriceOption = 'Per Unit';
@@ -20,7 +21,7 @@ void showAnimatedDialog(BuildContext context) {
           color: Colors.transparent,
           child: Container(
             width: double.infinity,
-            height: 400.h,
+            height: 420.h,
             margin: EdgeInsets.symmetric(horizontal: 20.w),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
@@ -118,20 +119,17 @@ void showAnimatedDialog(BuildContext context) {
                 SizedBox(
                   height: 50.h,
                   child: DropdownButtonFormField<String>(
+                    //  dropdownColor: AppColor.mainScreencolor,
                     value: selectedPriceOption,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(
-                          color: Colors.black,
-                          width: 1.5,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(
-                              color: Colors.black, width: 1.5)),
-                    ),
+                        fillColor: AppColor.mainScreencolor,
+                        filled: true,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide.none),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide.none)),
                     items: [
                       DropdownMenuItem(
                         value: 'Per Unit',
@@ -186,53 +184,21 @@ void showAnimatedDialog(BuildContext context) {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Container(
-                        height: 40.h,
-                        width: 130.w,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.red
-                            // gradient: LinearGradient(
-                            //     colors: [AppColor.darkBlue, AppColor.greencolor]),
-                            ),
-                        child: Center(
-                          child: Text(
-                            'Cancel',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
+                   AppButton(
+                      text: 'Cancel',
+                      height: 40.h,
+                      width: 130.w,
+                      textSize: 15.sp,
+                      color: Colors.red,
                     ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        height: 40.h,
-                        width: 130.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          gradient: LinearGradient(
-                              colors: [AppColor.darkBlue, AppColor.greencolor]),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Add to cart',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
+                    AppButton(
+                      text: 'Add to cart',
+                      height: 40.h,
+                      width: 150.w,
+                      textSize: 13.sp,
+                      gradient: LinearGradient(
+                          colors: [AppColor.darkBlue, AppColor.greencolor]),
+                    ),
                   ],
                 )
               ],
@@ -267,7 +233,7 @@ class DialogueFormField extends StatelessWidget {
         height: 45.sp,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(width: 1)),
+            color: AppColor.mainScreencolor),
         child: IconButton(
           icon: const Icon(Icons.remove),
           onPressed: () {
@@ -302,7 +268,7 @@ class DialogueFormField extends StatelessWidget {
         height: 45.sp,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(width: 1)),
+            color: AppColor.mainScreencolor),
         child: IconButton(
           icon: const Icon(Icons.add),
           onPressed: () {

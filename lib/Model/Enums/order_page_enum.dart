@@ -1,0 +1,4 @@
+enum OrderPageEnum {
+  history,
+  orders,
+}

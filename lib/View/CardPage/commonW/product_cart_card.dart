@@ -14,8 +14,7 @@ class ProductCartCard extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
+          borderRadius: BorderRadius.circular(15), color: Colors.white),
       child: Row(
         children: [
           Container(
@@ -30,9 +29,10 @@ class ProductCartCard extends StatelessWidget {
               // width: 80.w,
             ),
           ),
-          SizedBox(width: 20.w),
+          SizedBox(width: 10.w),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 width: 80.w,
@@ -46,7 +46,7 @@ class ProductCartCard extends StatelessWidget {
                   ),
                 ),
               ),
-              const Spacer(),
+              SizedBox(height: 10.h),
               Text(
                 '650 Da',
                 style: TextStyle(
@@ -103,7 +103,7 @@ class ProductCartCard extends StatelessWidget {
                       height: 30.sp,
                       width: 30.sp,
                       decoration: BoxDecoration(
-                          border: Border.all(),
+                          color: AppColor.mainScreencolor,
                           borderRadius: BorderRadius.circular(10)),
                       child: Center(
                         child: Icon(
@@ -113,11 +113,6 @@ class ProductCartCard extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 8.w),
-                    // Text(
-                    //   '1',
-                    //   style:
-                    //       TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
-                    // ),
                     SizedBox(
                         height: 30.sp,
                         width: 30.sp,
@@ -137,7 +132,7 @@ class ProductCartCard extends StatelessWidget {
                       height: 30.sp,
                       width: 30.sp,
                       decoration: BoxDecoration(
-                          border: Border.all(),
+                          color: AppColor.mainScreencolor,
                           borderRadius: BorderRadius.circular(10)),
                       child: Center(
                         child: Icon(

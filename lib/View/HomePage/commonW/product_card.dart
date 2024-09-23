@@ -13,20 +13,46 @@ class ProductCartHome extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 110.h,
-            width: 200.sp,
-            padding: EdgeInsets.all(5.sp),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: AppColor.mainScreencolor.withOpacity(0.5),
-            ),
-            child: Center(
-              child: Image.asset(
-                'assets/images/ifri.png',
-                fit: BoxFit.contain,
+          Stack(
+            children: [
+              Container(
+                height: 110.h,
+                width: 200.sp,
+                padding: EdgeInsets.all(5.sp),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: AppColor.mainScreencolor.withOpacity(0.5),
+                ),
+                child: Center(
+                  child: Image.asset(
+                    'assets/images/ifri.png',
+                    fit: BoxFit.contain,
+                  ),
+                ),
               ),
-            ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  height: 30.sp,
+                  width: 30.sp,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                      topRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                    ),
+                    gradient: LinearGradient(
+                        colors: [AppColor.darkBlue, AppColor.greencolor]),
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.favorite_outline_rounded,
+                      color: Colors.white,
+                      size: 17.sp,
+                    ),
+                  ),
+                ),
+              )
+            ],
           ),
           SizedBox(height: 5.h),
           Text(
