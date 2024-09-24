@@ -3,13 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:market_app/Core/app_color.dart';
 import 'package:market_app/Shared%20widgets/app_button.dart';
 
-class DownCardPage extends StatelessWidget {
-  const DownCardPage({super.key});
+class OrderDetailesDownSec extends StatelessWidget {
+  const OrderDetailesDownSec({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: 180.h,
       width: double.infinity,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -52,15 +51,27 @@ class DownCardPage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 15.h),
-            AppButton(
-              text: 'Confirm order',
+            Row(
+              children: [
+                AppButton(
+              text: 'Delete Order',
               height: 45.h,
-              width: double.infinity,
-              textSize: 17.sp,
+              width: 150.w,
+              textSize: 14.sp,
+              color: Colors.red.withOpacity(0.8),
+            ),
+            const Spacer(),
+            AppButton(
+              text: 'Save Changes',
+              height: 45.h,
+              width: 150.w,
+              textSize: 14.sp,
               gradient: LinearGradient(
                 colors: [AppColor.darkBlue, AppColor.greencolor],
               ),
             ),
+              ],
+            )
           ],
         ),
       ),

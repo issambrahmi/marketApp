@@ -69,7 +69,6 @@ class CardPage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 0.h),
           const DownCardPage(),
         ],
       )),

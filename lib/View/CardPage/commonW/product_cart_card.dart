@@ -13,8 +13,7 @@ class ProductCartCard extends StatelessWidget {
       height: 100.sp,
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15), color: Colors.white),
+      decoration: const BoxDecoration(color: Colors.white),
       child: Row(
         children: [
           Container(

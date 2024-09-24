@@ -14,7 +14,9 @@ class TopSectionOrderpage extends StatelessWidget {
       height: 40.h,
       width: double.infinity,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20), color: Colors.white),
+        borderRadius: BorderRadius.circular(20),
+        color: AppColor.mainScreencolor,
+      ),
       child: GetBuilder<OrderPageController>(builder: (controller) {
         return Stack(
           alignment: Alignment.center,

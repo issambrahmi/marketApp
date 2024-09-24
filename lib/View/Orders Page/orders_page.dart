@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:market_app/Controller/order_page_controller.dart';
+import 'package:market_app/View/Orders%20Page/commonW/orders.dart';
 import 'package:market_app/View/Orders%20Page/commonW/top_section_orderpage.dart';
 
 class OrdersPage extends StatelessWidget {
@@ -11,6 +12,7 @@ class OrdersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(OrderPageController());
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
           child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -18,6 +20,8 @@ class OrdersPage extends StatelessWidget {
           children: [
             SizedBox(height: 10.h),
             const TopSectionOrderpage(),
+            SizedBox(height: 15.h),
+            const OrdersView()
           ],
         ),
       )),

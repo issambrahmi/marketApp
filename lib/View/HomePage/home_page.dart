@@ -18,6 +18,7 @@ class HomePage extends StatelessWidget {
     Get.put(AddProductController());
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
           child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
