@@ -14,7 +14,7 @@ class OrdersView extends StatelessWidget {
         itemCount: 10,
         separatorBuilder: (context, index) => SizedBox(height: 8.h),
         itemBuilder: (BuildContext context, int index) {
-          return OrderCard();
+          return const OrderCard();
         },
       ),
     );

@@ -58,7 +58,7 @@ class OrderDetailesDownSec extends StatelessWidget {
               height: 45.h,
               width: 150.w,
               textSize: 14.sp,
-              color: Colors.red.withOpacity(0.8),
+              color: AppColor.deleteColor,
             ),
             const Spacer(),
             AppButton(

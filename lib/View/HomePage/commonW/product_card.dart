@@ -76,7 +76,7 @@ class ProductCartHome extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => showAnimatedDialog(context),
+                  onTap: () => showAnimatedDialog(context , 'Add to cart'),
                   child: Container(
                     height: 28.sp,
                     width: 28.sp,

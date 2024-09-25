@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:market_app/Core/app_color.dart';
 
 class SearchFormProduct extends StatelessWidget {
@@ -26,7 +24,7 @@ class SearchFormProduct extends StatelessWidget {
               contentPadding: EdgeInsets.only(top: 10.h, left: 20.w),
               filled: true,
               fillColor: AppColor.mainScreencolor,
-              hintText: 'Search for a doctor',
+              hintText: 'Search for product',
               prefixIcon: GestureDetector(
                 onTap: () => Get.back(),
                 child: const Icon(
@@ -45,7 +43,7 @@ class SearchFormProduct extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.all(8.w),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(10),
                         gradient: LinearGradient(
                             colors: [AppColor.darkBlue, AppColor.greencolor])),
                     // child: SvgPicture.asset(
@@ -58,7 +56,7 @@ class SearchFormProduct extends StatelessWidget {
                 ),
               ),
               border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none))),
     );
   }

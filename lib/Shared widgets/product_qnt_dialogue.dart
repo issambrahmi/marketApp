@@ -7,7 +7,7 @@ import 'package:market_app/Controller/add_product_controller.dart';
 import 'package:market_app/Core/app_color.dart';
 import 'package:market_app/Shared%20widgets/app_button.dart';
 
-void showAnimatedDialog(BuildContext context) {
+void showAnimatedDialog(BuildContext context , String text) {
   String selectedPriceOption = 'Per Unit';
   showGeneralDialog(
     context: context,
@@ -187,14 +187,16 @@ void showAnimatedDialog(BuildContext context) {
                    AppButton(
                       text: 'Cancel',
                       height: 40.h,
-                      width: 130.w,
+                      width: 125.w,
                       textSize: 15.sp,
-                      color: Colors.red,
+                      color: AppColor.deleteColor,
+                      onTap: ()=> Get.back(),
                     ),
+                  
                     AppButton(
-                      text: 'Add to cart',
+                      text: text,
                       height: 40.h,
-                      width: 150.w,
+                      width: 125.w,
                       textSize: 13.sp,
                       gradient: LinearGradient(
                           colors: [AppColor.darkBlue, AppColor.greencolor]),

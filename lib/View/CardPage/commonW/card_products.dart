@@ -8,10 +8,10 @@ class CardProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-     // physics: const NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: 10,
-      separatorBuilder: (context, index) =>  SizedBox(height: 12.h),
+      separatorBuilder: (context, index) =>  SizedBox(height: 8.h),
       itemBuilder: (BuildContext context, int index) {
         return const ProductCartCard();
       },

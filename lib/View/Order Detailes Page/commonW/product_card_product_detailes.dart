@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:market_app/Core/app_color.dart';
-import 'package:market_app/Shared%20widgets/product_qnt_dialogue.dart';
 
-class ProductCartCard extends StatelessWidget {
-  const ProductCartCard({super.key});
+class ProductCardProductDetailes extends StatelessWidget {
+  const ProductCardProductDetailes({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +67,7 @@ class ProductCartCard extends StatelessWidget {
                     10.w - //space
                     20.w - // container padding
                     80.w - // text sized
-                    10.w, //space
+                    10.w, //space ,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -78,14 +77,11 @@ class ProductCartCard extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: AppColor.greencolor,
                           borderRadius: BorderRadius.circular(10)),
-                      child: GestureDetector(
-                        onTap: () => showAnimatedDialog(context, 'Confirm'),
-                        child: Center(
-                          child: Icon(
-                            Icons.edit,
-                            size: 18.sp,
-                            color: Colors.white,
-                          ),
+                      child: Center(
+                        child: Icon(
+                          Icons.edit,
+                          size: 18.sp,
+                          color: Colors.white,
                         ),
                       ),
                     ),
