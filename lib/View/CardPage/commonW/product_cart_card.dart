@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:market_app/Core/app_color.dart';
-import 'package:market_app/Shared%20widgets/product_qnt_dialogue.dart';
+import 'package:market_app/Core/Color/app_color.dart';
+import 'package:market_app/Core/Shared%20widgets/app_alert_dialogue.dart';
+import 'package:market_app/Core/Shared%20widgets/product_qnt_dialogue.dart';
 
 class ProductCartCard extends StatelessWidget {
   const ProductCartCard({super.key});
@@ -90,17 +91,24 @@ class ProductCartCard extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 8.w),
-                    Container(
-                      height: 30.sp,
-                      width: 30.sp,
-                      decoration: BoxDecoration(
-                          color: AppColor.deleteColor,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Center(
-                        child: Icon(
-                          Icons.delete,
-                          size: 18.sp,
-                          color: Colors.white,
+                    GestureDetector(
+                      onTap: () => appAlertDialogue(
+                          context: context,
+                          height: 200.h,
+                          text:
+                              'Are you sure you want to delete this product from card ?'),
+                      child: Container(
+                        height: 30.sp,
+                        width: 30.sp,
+                        decoration: BoxDecoration(
+                            color: AppColor.deleteColor,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Center(
+                          child: Icon(
+                            Icons.delete,
+                            size: 18.sp,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     )

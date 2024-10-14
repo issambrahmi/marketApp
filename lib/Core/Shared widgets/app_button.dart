@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:market_app/Core/app_color.dart';
+import 'package:market_app/Core/Color/app_color.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton(
@@ -11,7 +11,7 @@ class AppButton extends StatelessWidget {
       this.gradient,
       this.color,
       required this.textSize,
-      this.onTap});
+      this.onTap, this.textColor});
 
   final String text;
   final double height;
@@ -20,6 +20,8 @@ class AppButton extends StatelessWidget {
   final Color? color;
   final double textSize;
   final void Function()? onTap;
+  final Color? textColor;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -37,7 +39,7 @@ class AppButton extends StatelessWidget {
             style: TextStyle(
               fontSize: textSize,
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: textColor ?? Colors.black,
             ),
           ),
         ),

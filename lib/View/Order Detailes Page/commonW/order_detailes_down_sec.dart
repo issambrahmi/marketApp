@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:market_app/Core/app_color.dart';
-import 'package:market_app/Shared%20widgets/app_button.dart';
+import 'package:market_app/Core/Color/app_color.dart';
+import 'package:market_app/Core/Shared%20widgets/app_button.dart';
 
 class OrderDetailesDownSec extends StatelessWidget {
   const OrderDetailesDownSec({super.key});

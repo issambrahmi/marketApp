@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:market_app/Core/app_color.dart';
+import 'package:market_app/Core/Color/app_color.dart';
 import 'package:market_app/View/CardPage/card_page.dart';
 
 class MyFloatingButton extends StatelessWidget {

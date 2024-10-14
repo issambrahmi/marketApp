@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:market_app/Core/app_color.dart';
+import 'package:market_app/Core/Color/app_color.dart';
 import 'package:market_app/View/Home/home.dart';
+import 'package:market_app/View/LoginPage/login_page.dart';
 
 void main() {
   runApp(const MyApp());

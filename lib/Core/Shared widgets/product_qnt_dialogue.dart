@@ -1,13 +1,11 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:market_app/Controller/add_product_controller.dart';
-import 'package:market_app/Core/app_color.dart';
-import 'package:market_app/Shared%20widgets/app_button.dart';
+import 'package:market_app/Core/Color/app_color.dart';
+import 'package:market_app/Core/Shared%20widgets/app_button.dart';
 
-void showAnimatedDialog(BuildContext context , String text) {
+void showAnimatedDialog(BuildContext context, String text) {
   String selectedPriceOption = 'Per Unit';
   showGeneralDialog(
     context: context,
@@ -184,21 +182,20 @@ void showAnimatedDialog(BuildContext context , String text) {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                   AppButton(
+                    AppButton(
                       text: 'Cancel',
                       height: 40.h,
                       width: 125.w,
                       textSize: 15.sp,
                       color: AppColor.deleteColor,
-                      onTap: ()=> Get.back(),
+                      onTap: () => Get.back(),
                     ),
-                  
                     AppButton(
                       text: text,
                       height: 40.h,
                       width: 125.w,
                       textSize: 13.sp,
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                           colors: [AppColor.darkBlue, AppColor.greencolor]),
                     ),
                   ],

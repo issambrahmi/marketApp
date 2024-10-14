@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:market_app/Core/app_color.dart';
+import 'package:market_app/Core/Color/app_color.dart';
 
 class HomePageTextFormFiled extends StatelessWidget {
   const HomePageTextFormFiled({
@@ -18,6 +18,7 @@ class HomePageTextFormFiled extends StatelessWidget {
       width: double.infinity,
       child: TextFormField(
         controller: textController,
+        cursorColor: AppColor.greencolor,
         decoration: InputDecoration(
           // hintText: hint,
           // hintStyle: TextStyle(color: MyColors.greyColor.shade500),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:market_app/Core/app_color.dart';
+import 'package:market_app/Core/Color/app_color.dart';
 
 class SearchFormProduct extends StatelessWidget {
   const SearchFormProduct({super.key});
@@ -14,6 +14,7 @@ class SearchFormProduct extends StatelessWidget {
       width: double.infinity,
       child: TextFormField(
           autofocus: true,
+          cursorColor: AppColor.greencolor,
           // onFieldSubmitted: (str) => Get.to(
           //       () => const DoctorsResultPage(),
           //       transition: Transition.cupertino,
@@ -44,7 +45,7 @@ class SearchFormProduct extends StatelessWidget {
                     padding: EdgeInsets.all(8.w),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                             colors: [AppColor.darkBlue, AppColor.greencolor])),
                     // child: SvgPicture.asset(
                     //   'assets/icons/design_icons/filter.svg',
