@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:market_app/Controller/home_page_controller.dart';
 import 'package:market_app/Core/Color/app_color.dart';
 
 class HomePageCategories extends StatelessWidget {
@@ -7,6 +9,7 @@ class HomePageCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HomePageController controller = Get.find<HomePageController>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -14,15 +17,17 @@ class HomePageCategories extends StatelessWidget {
           'Categories',
           style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 8.h),
+        SizedBox(height: 12.h),
         SizedBox(
           height: 35.h,
           child: ListView.separated(
-            itemCount: 10,
+            itemCount: controller.categories.length,
             scrollDirection: Axis.horizontal,
             separatorBuilder: (context, index) => SizedBox(width: 8.w),
             itemBuilder: (context, index) {
-              return const CCategorieCard();
+              return CCategorieCard(
+                catName: controller.categories[index].name,
+              );
             },
           ),
         )
@@ -32,20 +37,31 @@ class HomePageCategories extends StatelessWidget {
 }
 
 class CCategorieCard extends StatelessWidget {
-  const CCategorieCard({super.key});
+  const CCategorieCard({super.key, required this.catName});
 
+  final String catName;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
-      padding: EdgeInsets.all(8.sp),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: AppColor.mainScreencolor,
-      ),
-      child: Text(
-        'Boisson',
-        style: TextStyle(fontSize: 14.sp),
+    return InkWell(
+      onTap: (){},
+      child: Container(
+        padding: EdgeInsets.all(8.sp),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            gradient: const LinearGradient(colors: [
+              AppColor.darkBlue,
+              AppColor.greencolor,
+            ])
+            // color: AppColor.mainScreencolor,
+            ),
+        child: Text(
+          catName,
+          style: TextStyle(
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
     //  Column(

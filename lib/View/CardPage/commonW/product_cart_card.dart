@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:market_app/Controller/home_page_controller.dart';
 import 'package:market_app/Core/Color/app_color.dart';
 import 'package:market_app/Core/Shared%20widgets/app_alert_dialogue.dart';
 import 'package:market_app/Core/Shared%20widgets/product_qnt_dialogue.dart';
@@ -80,7 +82,10 @@ class ProductCartCard extends StatelessWidget {
                           color: AppColor.greencolor,
                           borderRadius: BorderRadius.circular(10)),
                       child: GestureDetector(
-                        onTap: () => showAnimatedDialog(context, 'Confirm'),
+                        onTap: () => showAnimatedDialog(
+                            context,
+                            Get.find<HomePageController>().products[0],
+                            'Confirm'),
                         child: Center(
                           child: Icon(
                             Icons.edit,

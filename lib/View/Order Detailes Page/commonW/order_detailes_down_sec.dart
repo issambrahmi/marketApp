@@ -54,22 +54,22 @@ class OrderDetailesDownSec extends StatelessWidget {
             Row(
               children: [
                 AppButton(
-              text: 'Delete Order',
-              height: 45.h,
-              width: 150.w,
-              textSize: 14.sp,
-              color: AppColor.deleteColor,
-            ),
-            const Spacer(),
-            AppButton(
-              text: 'Save Changes',
-              height: 45.h,
-              width: 150.w,
-              textSize: 14.sp,
-              gradient: LinearGradient(
-                colors: [AppColor.darkBlue, AppColor.greencolor],
-              ),
-            ),
+                  text: 'Delete Order',
+                  height: 45.h,
+                  width: 150.w,
+                  textSize: 14.sp,
+                  color: AppColor.deleteColor,
+                ),
+                const Spacer(),
+                AppButton(
+                  text: 'Save Changes',
+                  height: 45.h,
+                  width: 150.w,
+                  textSize: 14.sp,
+                  gradient: const LinearGradient(
+                    colors: [AppColor.darkBlue, AppColor.greencolor],
+                  ),
+                ),
               ],
             )
           ],

@@ -24,7 +24,7 @@ class TrackingOrder extends StatelessWidget {
               Container(
                 height: 5.h,
                 width: 50.w,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   //color: AppColor.mainScreencolor,
                   color: AppColor.greencolor,
                 ),
@@ -36,7 +36,7 @@ class TrackingOrder extends StatelessWidget {
               Container(
                 height: 5.h,
                 width: 50.w,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColor.mainScreencolor,
                 ),
               ),

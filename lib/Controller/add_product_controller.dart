@@ -2,9 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class AddProductController extends GetxController {
-  String selectedPriceOption = 'Per Unit';
-  
-  int quanity = 1;
+  RxString selectedPriceOption = 'Per Unit'.obs;
+  RxInt quanity = 1.obs;
   late int totalPrice;
   late TextEditingController quantityController;
 
@@ -15,13 +14,21 @@ class AddProductController extends GetxController {
     super.onInit();
   }
 
+  void resetData() {
+    quanity.value = 1;
+    selectedPriceOption.value = 'Per Unit';
+    quantityController.text = '1';
+  }
+
   void plus() {
     quanity++;
     quantityController.text = quanity.toString();
   }
 
   void minus() {
-    quanity--;
-    quantityController.text = quanity.toString();
+    if (quanity > 1) {
+      quanity--;
+      quantityController.text = quanity.toString();
+    }
   }
 }

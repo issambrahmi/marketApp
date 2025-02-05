@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:market_app/Controller/add_product_controller.dart';
 import 'package:market_app/Controller/home_page_controller.dart';
+import 'package:market_app/Core/Shared%20widgets/app_circle_indicator.dart';
+import 'package:market_app/Model/Enums/request_enum.dart';
 import 'package:market_app/View/HomePage/commonW/categories.dart';
 import 'package:market_app/View/HomePage/commonW/home_page_search.dart';
 import 'package:market_app/View/HomePage/commonW/home_text_form.dart';
@@ -23,6 +25,7 @@ class HomePage extends StatelessWidget {
           child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: ListView(
+          controller: controller.scrollController,
           children: [
             SizedBox(height: 10.h),
             // HomePageTextFormFiled(
@@ -30,13 +33,34 @@ class HomePage extends StatelessWidget {
             //   textController: controller.search,
             // ),
             const HomePageSearch(),
-             SizedBox(height: 20.h),
-            // const MostPopularProduct(),
-            // const Divider(),
-            const HomePageCategories(),
-           // SizedBox(height: 20.h),
-            SizedBox(height: 30.h),
-            const RandomProduct(),
+            Obx(() => controller.reqState.value == RequestEnum.waiting
+                ? SizedBox(
+                    height: 400.h, child: AppCircleIndicator(size: 20.sp))
+                : controller.reqState.value == RequestEnum.serverError
+                    ? const Center(
+                        child: Text('Server err'),
+                      )
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 20.h),
+                          // const MostPopularProduct(),
+                          // const Divider(),
+                          const HomePageCategories(),
+                          // SizedBox(height: 20.h),
+                          SizedBox(height: 20.h),
+                          Text(
+                            'Products for you',
+                            style: TextStyle(
+                                fontSize: 17.sp, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 12.h),
+                          const RandomProduct(),
+                        ],
+                      )),
+            SizedBox(
+              height: 20.h,
+            ),
           ],
         ),
       )),

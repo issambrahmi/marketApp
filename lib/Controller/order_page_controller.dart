@@ -5,7 +5,6 @@ class OrderPageController extends GetxController {
   OrderPageEnum cartState = OrderPageEnum.orders;
   void onChangecarttState(OrderPageEnum state) {
     cartState = state;
-    print(cartState);
     update();
   }
 }

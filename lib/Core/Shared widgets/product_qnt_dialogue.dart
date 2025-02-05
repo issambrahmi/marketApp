@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import 'package:market_app/Controller/add_product_controller.dart';
 import 'package:market_app/Core/Color/app_color.dart';
 import 'package:market_app/Core/Shared%20widgets/app_button.dart';
+import 'package:market_app/Model/Models/product_model.dart';
 
-void showAnimatedDialog(BuildContext context, String text) {
-  String selectedPriceOption = 'Per Unit';
+void showAnimatedDialog(
+    BuildContext context, ProductModel product, String text) {
   showGeneralDialog(
     context: context,
     barrierDismissible: true,
@@ -14,6 +15,7 @@ void showAnimatedDialog(BuildContext context, String text) {
     barrierColor: Colors.black.withOpacity(0.5), // Background dimming
     transitionDuration: const Duration(milliseconds: 200),
     pageBuilder: (context, animation1, animation2) {
+      AddProductController controller = Get.find<AddProductController>();
       return Center(
         child: Material(
           color: Colors.transparent,
@@ -54,7 +56,7 @@ void showAnimatedDialog(BuildContext context, String text) {
                         SizedBox(
                           width: 150.w,
                           child: Text(
-                            'Boisson ifri 1L ananas',
+                            product.name,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                             style: TextStyle(
@@ -67,7 +69,7 @@ void showAnimatedDialog(BuildContext context, String text) {
                         Row(
                           children: [
                             Text(
-                              'Quanity : ',
+                              'min Quanity : ',
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: 14.sp,
@@ -78,11 +80,13 @@ void showAnimatedDialog(BuildContext context, String text) {
                             GetBuilder<AddProductController>(
                                 builder: (controller) {
                               return Text(
-                                controller.selectedPriceOption == 'Per Unit'
+                                controller.selectedPriceOption.value ==
+                                        'Per Unit'
                                     ? '1'
-                                    : controller.selectedPriceOption == 'Gros'
-                                        ? '' '6'
-                                        : '6',
+                                    : controller.selectedPriceOption.value ==
+                                            'Gros'
+                                        ? product.minQntG.toString()
+                                        : product.minQntSG.toString(),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 2,
                                 style: TextStyle(
@@ -96,11 +100,11 @@ void showAnimatedDialog(BuildContext context, String text) {
                         SizedBox(height: 10.h),
                         GetBuilder<AddProductController>(builder: (controller) {
                           return Text(
-                            controller.selectedPriceOption == 'Per Unit'
-                                ? '100 Da'
-                                : controller.selectedPriceOption == 'Gros'
-                                    ? '' '600 Da'
-                                    : '500 Da',
+                            controller.selectedPriceOption.value == 'Per Unit'
+                                ? product.priceD.toString()
+                                : controller.selectedPriceOption.value == 'Gros'
+                                    ? product.priceG.toString()
+                                    : product.priceG.toString(),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                             style: TextStyle(
@@ -118,7 +122,7 @@ void showAnimatedDialog(BuildContext context, String text) {
                   height: 50.h,
                   child: DropdownButtonFormField<String>(
                     //  dropdownColor: AppColor.mainScreencolor,
-                    value: selectedPriceOption,
+                    value: controller.selectedPriceOption.value,
                     decoration: InputDecoration(
                         fillColor: AppColor.mainScreencolor,
                         filled: true,
@@ -149,9 +153,9 @@ void showAnimatedDialog(BuildContext context, String text) {
                       ),
                     ],
                     onChanged: (value) {
-                      selectedPriceOption = value!;
-                      Get.find<AddProductController>().selectedPriceOption =
-                          value;
+                      Get.find<AddProductController>()
+                          .selectedPriceOption
+                          .value = value!;
                       Get.find<AddProductController>().update();
                     },
                   ),
@@ -169,13 +173,15 @@ void showAnimatedDialog(BuildContext context, String text) {
                       ),
                     ),
                     SizedBox(width: 8.w),
-                    Text(
-                      '2200 Da',
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
+                    Obx(
+                      () => Text(
+                        '${(controller.quanity * (controller.selectedPriceOption.value == 'Per Unit' ? product.priceD : controller.selectedPriceOption.value == 'Super Gros' ? product.priceG : product.priceSG)).toString()} Da',
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
+                    )
                   ],
                 ),
                 SizedBox(height: 30.h),
@@ -255,7 +261,7 @@ class DialogueFormField extends StatelessWidget {
           onChanged: (value) {
             int? newQuantity = int.tryParse(value);
             if (newQuantity != null && newQuantity > 0) {
-              controller.quanity =
+              controller.quanity.value =
                   int.parse(controller.quantityController.text);
             }
           },

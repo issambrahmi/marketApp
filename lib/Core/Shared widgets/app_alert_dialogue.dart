@@ -4,7 +4,10 @@ import 'package:get/get.dart';
 import 'package:market_app/Core/Color/app_color.dart';
 import 'package:market_app/Core/Shared%20widgets/app_button.dart';
 
-void appAlertDialogue({required BuildContext context, required String text, required double height}) {
+void appAlertDialogue(
+    {required BuildContext context,
+    required String text,
+    required double height}) {
   showGeneralDialog(
       context: context,
       barrierDismissible: true,

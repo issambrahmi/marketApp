@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:market_app/Controller/add_product_controller.dart';
+import 'package:market_app/Controller/home_page_controller.dart';
 import 'package:market_app/Core/Color/app_color.dart';
 import 'package:market_app/Core/Shared%20widgets/product_qnt_dialogue.dart';
+import 'package:market_app/Model/Models/product_model.dart';
 
 class ProductCartHome extends StatelessWidget {
-  const ProductCartHome({super.key});
+  const ProductCartHome(
+      {super.key, required this.product, required this.index});
 
+  final ProductModel product;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -35,8 +42,8 @@ class ProductCartHome extends StatelessWidget {
                 child: Container(
                   height: 30.sp,
                   width: 30.sp,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
                       topRight: Radius.circular(10),
                       bottomLeft: Radius.circular(10),
                     ),
@@ -56,7 +63,7 @@ class ProductCartHome extends StatelessWidget {
           ),
           SizedBox(height: 5.h),
           Text(
-            'ifri ananas',
+            product.name,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontSize: 14.sp,
@@ -69,14 +76,17 @@ class ProductCartHome extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '690 DA',
+                  product.priceD.toString(),
                   style: TextStyle(
                     fontSize: 13.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => showAnimatedDialog(context , 'Add to cart'),
+                  onTap: () => {
+                    Get.find<AddProductController>().resetData(),
+                    showAnimatedDialog(context, product, 'Add to cart')
+                  },
                   child: Container(
                     height: 28.sp,
                     width: 28.sp,

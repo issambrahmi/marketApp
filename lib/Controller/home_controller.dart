@@ -5,8 +5,6 @@ import 'package:market_app/View/Orders%20Page/orders_page.dart';
 import 'package:market_app/View/SearchPage/search_page.dart';
 
 class HomeController extends GetxController {
-  Widget currentPage = const HomePage();
-  int currentIndex = 0;
   List<Widget> pages = [
     const HomePage(),
     const SearchPage(),
@@ -14,10 +12,11 @@ class HomeController extends GetxController {
     const OrdersPage(),
     const Scaffold()
   ];
+  Widget currentPage = const HomePage();
+  int currentIndex = 0;
 
   void ontapIcon(int index) {
     currentPage = pages[index];
     currentIndex = index;
-    update();
   }
 }
