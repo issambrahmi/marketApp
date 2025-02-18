@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:market_app/Controller/add_product_controller.dart';
+import 'package:market_app/Controller/product_controller.dart';
 import 'package:market_app/Core/Color/app_color.dart';
 import 'package:market_app/Core/Shared%20widgets/app_button.dart';
 import 'package:market_app/Model/Models/product_model.dart';
@@ -15,7 +15,8 @@ void showAnimatedDialog(
     barrierColor: Colors.black.withOpacity(0.5), // Background dimming
     transitionDuration: const Duration(milliseconds: 200),
     pageBuilder: (context, animation1, animation2) {
-      AddProductController controller = Get.find<AddProductController>();
+      ProductController controller = Get.find<ProductController>();
+
       return Center(
         child: Material(
           color: Colors.transparent,
@@ -77,7 +78,7 @@ void showAnimatedDialog(
                               ),
                             ),
                             SizedBox(width: 5.w),
-                            GetBuilder<AddProductController>(
+                            GetBuilder<ProductController>(
                                 builder: (controller) {
                               return Text(
                                 controller.selectedPriceOption.value ==
@@ -98,7 +99,7 @@ void showAnimatedDialog(
                           ],
                         ),
                         SizedBox(height: 10.h),
-                        GetBuilder<AddProductController>(builder: (controller) {
+                        GetBuilder<ProductController>(builder: (controller) {
                           return Text(
                             controller.selectedPriceOption.value == 'Per Unit'
                                 ? product.priceD.toString()
@@ -153,15 +154,28 @@ void showAnimatedDialog(
                       ),
                     ],
                     onChanged: (value) {
-                      Get.find<AddProductController>()
-                          .selectedPriceOption
-                          .value = value!;
-                      Get.find<AddProductController>().update();
+                      controller.selectedPriceOption.value = value!;
+                      // exiger le client avec min qnt
+                      if (value == 'Per Unit') {
+                        controller.quantityController.text = '1';
+                        controller.quanity.value = 1;
+                      } else if (value == 'Gros') {
+                        controller.quantityController.text =
+                            product.minQntG.toString();
+                        controller.quanity.value = product.minQntG;
+                      } else if (value == 'Super Gros') {
+                        controller.quantityController.text =
+                            product.minQntG.toString();
+                        controller.quanity.value = product.minQntSG;
+                      }
+                      controller.update();
                     },
                   ),
                 ),
                 SizedBox(height: 30.h),
-                const DialogueFormField(),
+                DialogueFormField(
+                  product: product,
+                ),
                 SizedBox(height: 30.h),
                 Row(
                   children: [
@@ -227,11 +241,11 @@ void showAnimatedDialog(
 }
 
 class DialogueFormField extends StatelessWidget {
-  const DialogueFormField({super.key});
-
+  const DialogueFormField({super.key, required this.product});
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
-    AddProductController controller = Get.find<AddProductController>();
+    ProductController controller = Get.find<ProductController>();
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Container(
         width: 45.sp,
@@ -242,7 +256,7 @@ class DialogueFormField extends StatelessWidget {
         child: IconButton(
           icon: const Icon(Icons.remove),
           onPressed: () {
-            controller.minus();
+            controller.minus(product);
           },
         ),
       ),
@@ -260,10 +274,20 @@ class DialogueFormField extends StatelessWidget {
                   UnderlineInputBorder(borderSide: BorderSide(width: 1.5))),
           onChanged: (value) {
             int? newQuantity = int.tryParse(value);
-            if (newQuantity != null && newQuantity > 0) {
-              controller.quanity.value =
-                  int.parse(controller.quantityController.text);
+
+            if (newQuantity != null &&
+                ((controller.selectedPriceOption.value == 'Per Unit') ||
+                    (controller.selectedPriceOption.value == 'Gros' &&
+                        newQuantity >= product.minQntG) ||
+                    ((controller.selectedPriceOption.value == 'Super Gros' &&
+                        newQuantity >= product.minQntSG)))) {
+              controller.quanity.value = int.parse(value);
+            } else {
+              controller.quantityController.text =
+                  controller.quanity.toString();
             }
+            print('qnt : ${controller.quanity}');
+            print('value : $value');
           },
         ),
       ),

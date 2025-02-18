@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:market_app/Controller/add_product_controller.dart';
+import 'package:market_app/Controller/product_controller.dart';
 import 'package:market_app/Controller/home_page_controller.dart';
 import 'package:market_app/Core/Shared%20widgets/app_circle_indicator.dart';
 import 'package:market_app/Model/Enums/request_enum.dart';
 import 'package:market_app/View/HomePage/commonW/categories.dart';
 import 'package:market_app/View/HomePage/commonW/home_page_search.dart';
-import 'package:market_app/View/HomePage/commonW/home_text_form.dart';
-import 'package:market_app/View/HomePage/commonW/most_popular_product.dart';
 import 'package:market_app/View/HomePage/commonW/random_product.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,7 +15,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomePageController controller = Get.put(HomePageController());
-    Get.put(AddProductController());
+    Get.put(ProductController());
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -42,6 +40,7 @@ class HomePage extends StatelessWidget {
                       )
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(height: 20.h),
                           // const MostPopularProduct(),

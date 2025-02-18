@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:market_app/Controller/product_controller.dart';
 import 'package:market_app/Core/Constantes/app_links.dart';
 import 'package:market_app/Model/Enums/request_enum.dart';
 import 'package:market_app/Model/Models/categorie_model.dart';
@@ -54,6 +55,7 @@ class HomePageController extends GetxController {
         products.assignAll(data['products']
             .map<ProductModel>((product) => ProductModel.fromMap(product))
             .toList());
+
         reqState.value = RequestEnum.successes;
       } else {
         reqState.value = RequestEnum.serverError;
