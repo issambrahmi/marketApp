@@ -57,7 +57,7 @@ class DownCardPage extends StatelessWidget {
               height: 45.h,
               width: double.infinity,
               textSize: 17.sp,
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 colors: [AppColor.darkBlue, AppColor.greencolor],
               ),
             ),

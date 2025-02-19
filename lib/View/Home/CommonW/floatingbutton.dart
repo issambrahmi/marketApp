@@ -14,7 +14,7 @@ class MyFloatingButton extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
           gradient:
-              LinearGradient(colors: [AppColor.darkBlue, AppColor.greencolor])),
+              const LinearGradient(colors: [AppColor.darkBlue, AppColor.greencolor])),
       child: FloatingActionButton(
         onPressed: () => Get.to(() => const CardPage()),
         elevation: 0.0,

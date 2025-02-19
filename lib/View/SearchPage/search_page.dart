@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:market_app/View/HomePage/commonW/random_product.dart';
-import 'package:market_app/View/SearchPage/commonW/products_names_result.dart';
 import 'package:market_app/View/SearchPage/commonW/search_form.dart';
 
 class SearchPage extends StatelessWidget {

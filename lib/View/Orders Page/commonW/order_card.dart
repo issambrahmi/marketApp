@@ -88,7 +88,7 @@ class OrderCard extends StatelessWidget {
             height: 40.h,
             width: double.infinity,
             textSize: 15.sp,
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
                 colors: [AppColor.darkBlue, AppColor.greencolor]),
             onTap: () {
               Get.to(() => const OrderDetailesPage());

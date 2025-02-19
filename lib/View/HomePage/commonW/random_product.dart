@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:market_app/Controller/home_page_controller.dart';
 import 'package:market_app/Core/Shared%20widgets/app_circle_indicator.dart';
 import 'package:market_app/View/HomePage/commonW/product_card.dart';

@@ -1,8 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:market_app/Core/Color/app_color.dart';
 import 'package:market_app/View/Orders%20Page/commonW/order_card.dart';
-import 'package:market_app/main.dart';
 
 class OrdersView extends StatelessWidget {
   const OrdersView({super.key});

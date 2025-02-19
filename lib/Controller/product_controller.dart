@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:market_app/Controller/home_page_controller.dart';
 import 'package:market_app/Core/Constantes/app_links.dart';
-import 'package:market_app/Core/Services/hive_services.dart';
 import 'package:market_app/Core/Shared%20widgets/app_snackbar.dart';
 import 'package:market_app/Model/Models/product_model.dart';
 import 'package:http/http.dart' as http;
@@ -21,7 +20,7 @@ class ProductController extends GetxController {
   void onInit() {
     quantityController = TextEditingController();
     quantityController.text = '1';
-    getFavoriteProductsLocaly();
+    //getFavoriteProductsLocaly();
     super.onInit();
   }
 
@@ -48,6 +47,10 @@ class ProductController extends GetxController {
 
   void addProductToFavorite(
       int productId, BuildContext context, int index) async {
+    //
+    AppSnackBar(context, 'product added to favorites');
+    Get.find<HomePageController>().products[index].isFavorite!.value = true;
+
     try {
       final response = await http.post(Uri.parse(AppLinks.addProductToFavorite),
           headers: {
@@ -55,10 +58,7 @@ class ProductController extends GetxController {
           },
           body: jsonEncode({'clientId': userId, 'productId': productId}));
       if (response.statusCode == 200) {
-        HiveServices.addProuctToFavoriteLocaly(productId);
-        Get.find<HomePageController>().products[index].isFavorite!.value = true;
-        // ignore: use_build_context_synchronously
-        AppSnackBar(context, 'product added to favorites');
+        //HiveServices.addProuctToFavoriteLocaly(productId);
       } else {
         throw Exception();
       }
@@ -66,11 +66,15 @@ class ProductController extends GetxController {
       debugPrint('** $e');
       // ignore: use_build_context_synchronously
       AppSnackBar(context, 'product failed to add to favorites');
+      Get.find<HomePageController>().products[index].isFavorite!.value = false;
     }
   }
 
   void deleteProductFromFavorite(
       int productId, BuildContext context, int index) async {
+    //
+    Get.find<HomePageController>().products[index].isFavorite.value = false;
+    AppSnackBar(context, 'product delete from favorites');
     try {
       final response =
           await http.delete(Uri.parse(AppLinks.deleteProductFromFavorite),
@@ -79,38 +83,34 @@ class ProductController extends GetxController {
               },
               body: jsonEncode({'clientId': userId, 'productId': productId}));
       if (response.statusCode == 200) {
-        HiveServices.deleteProuctFromFavoriteLocaly(productId);
-        Get.find<HomePageController>().products[index].isFavorite!.value =
-            false;
-
-        // ignore: use_build_context_synchronously
-        AppSnackBar(context, 'product delete from favorites');
+       // HiveServices.deleteProuctFromFavoriteLocaly(1);
       } else {
         throw Exception();
       }
     } catch (e) {
       debugPrint('** $e');
       // ignore: use_build_context_synchronously
-      AppSnackBar(context, 'product failed to delete from favorites');
+      AppSnackBar(context, 'failed to delete from favorites');
+      Get.find<HomePageController>().products[index].isFavorite!.value = true;
     }
   }
 
-  void getFavoriteProductsLocaly() async {
-    try {
-      favoritesProducts = await HiveServices.getProuctFavoritesProdctsLocaly();
-      // for (var element in favoritesProducts) {
-      //   print(element);
-      // }
+  // void getFavoriteProductsLocaly() async {
+  //   try {
+  //     favoritesProducts = await HiveServices.getProuctFavoritesProdctsLocaly();
+  //     for (var element in favoritesProducts) {
+  //       print(element);
+  //     }
 
-      Get.find<HomePageController>().products.map((product) {
-        if (favoritesProducts.contains(product.id)) {
-          product.isFavorite!.value = true;
-        }
-        print(product.isFavorite!.value);
-        print('\n');
-      });
-    } catch (e) {
-      debugPrint('** $e');
-    }
-  }
+  //     Get.find<HomePageController>().products.map((product) {
+  //       if (favoritesProducts.contains(product.id)) {
+  //         product.isFavorite!.value = true;
+  //       }
+  //       print(product.isFavorite!.value);
+  //       print('\n');
+  //     });
+  //   } catch (e) {
+  //     debugPrint('** $e');
+  //   }
+  //}
 }

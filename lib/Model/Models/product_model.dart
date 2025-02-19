@@ -5,7 +5,7 @@ class ProductModel {
   final String name;
   final String? categorieName;
   final String? image;
-  RxBool? isFavorite;
+  RxBool isFavorite;
   final double priceD;
   final double priceG;
   final double priceSG;
@@ -17,7 +17,7 @@ class ProductModel {
     required this.name,
     this.categorieName,
     this.image,
-    this.isFavorite,
+    required this.isFavorite,
     required this.priceD,
     required this.priceG,
     required this.priceSG,
@@ -31,7 +31,7 @@ class ProductModel {
         name: data['name'],
         categorieName: data['categorie_name'],
         image: data['image'],
-        isFavorite: false.obs,
+        isFavorite: data["is_favorite"] == 1 ? true.obs : false.obs,
         priceD: data['price_d'] is double
             ? data['price_d']
             : double.parse(data['price_d'].toString()),

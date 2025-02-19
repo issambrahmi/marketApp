@@ -40,7 +40,7 @@ class ProductCartHome extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: InkWell(
                   onTap: () {
-                    if (product.isFavorite!.value == false) {
+                    if (product.isFavorite.value == false) {
                       Get.find<ProductController>()
                           .addProductToFavorite(product.id!, context, index);
                     } else {
@@ -60,7 +60,7 @@ class ProductCartHome extends StatelessWidget {
                           colors: [AppColor.darkBlue, AppColor.greencolor]),
                     ),
                     child: Center(
-                      child: Obx(()=> Icon(  product.isFavorite!.value == false?
+                      child: Obx(()=> Icon(  product.isFavorite.value == false?
                         Icons.favorite_outline_rounded : Icons.favorite_sharp,
                         color: Colors.white,
                         size: 17.sp,

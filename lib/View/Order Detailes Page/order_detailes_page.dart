@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:market_app/View/CardPage/commonW/card_products.dart';
 import 'package:market_app/View/Order%20Detailes%20Page/commonW/order_detailes_down_sec.dart';
 import 'package:market_app/View/Order%20Detailes%20Page/commonW/order_detailes_products.dart';
 import 'package:market_app/View/Order%20Detailes%20Page/commonW/order_detailes_top_section.dart';

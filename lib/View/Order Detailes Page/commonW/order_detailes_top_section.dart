@@ -10,7 +10,7 @@ class OrderDetailesTopSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w),
-      decoration:  BoxDecoration(color: Colors.white, boxShadow: [
+      decoration:  const BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(offset: Offset(0, 1), color: AppColor.mainScreencolor, blurRadius: 10 ,)
       ]),
       child: Row(
