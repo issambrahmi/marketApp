@@ -74,7 +74,6 @@ class HomePageController extends GetxController {
         if (data.length < 30) {
           isMaxProducts = true;
         }
-
         for (var product in data) {
           products.add(ProductModel.fromMap(product));
         }

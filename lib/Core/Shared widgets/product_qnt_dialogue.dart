@@ -6,17 +6,28 @@ import 'package:market_app/Core/Color/app_color.dart';
 import 'package:market_app/Core/Shared%20widgets/app_button.dart';
 import 'package:market_app/Model/Models/product_model.dart';
 
-void showAnimatedDialog(
-    BuildContext context, ProductModel product, String text) {
+void productQntDialogue({
+  required BuildContext context,
+  required ProductModel product,
+  required String text,
+  required void Function()? confirmTap,
+  bool? isEdit,
+  String? type,
+  int? qnt,
+}) {
   showGeneralDialog(
     context: context,
-    barrierDismissible: true,
+    barrierDismissible: false,
     barrierLabel: 'hi',
     barrierColor: Colors.black.withOpacity(0.5), // Background dimming
     transitionDuration: const Duration(milliseconds: 200),
     pageBuilder: (context, animation1, animation2) {
       ProductController controller = Get.find<ProductController>();
-
+      if (isEdit == true) {
+        controller.selectedPriceOption.value = type!;
+        controller.quantityController.text = qnt!.toString();
+        controller.quanity.value = qnt;
+      }
       return Center(
         child: Material(
           color: Colors.transparent,
@@ -78,42 +89,36 @@ void showAnimatedDialog(
                               ),
                             ),
                             SizedBox(width: 5.w),
-                            GetBuilder<ProductController>(
-                                builder: (controller) {
-                              return Text(
-                                controller.selectedPriceOption.value ==
-                                        'Per Unit'
-                                    ? '1'
-                                    : controller.selectedPriceOption.value ==
-                                            'Gros'
-                                        ? product.minQntG.toString()
-                                        : product.minQntSG.toString(),
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              );
-                            }),
+                            Obx(() => Text(
+                                  controller.selectedPriceOption.value == 'd'
+                                      ? '1'
+                                      : controller.selectedPriceOption.value ==
+                                              'g'
+                                          ? product.minQntG.toString()
+                                          : product.minQntSG.toString(),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ))
                           ],
                         ),
                         SizedBox(height: 10.h),
-                        GetBuilder<ProductController>(builder: (controller) {
-                          return Text(
-                            controller.selectedPriceOption.value == 'Per Unit'
-                                ? product.priceD.toString()
-                                : controller.selectedPriceOption.value == 'Gros'
-                                    ? product.priceG.toString()
-                                    : product.priceG.toString(),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          );
-                        }),
+                        Obx(() => Text(
+                              controller.selectedPriceOption.value == 'd'
+                                  ? product.priceD.toString()
+                                  : controller.selectedPriceOption.value == 'g'
+                                      ? product.priceG.toString()
+                                      : product.priceG.toString(),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: TextStyle(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ))
                       ],
                     ),
                   ],
@@ -135,7 +140,7 @@ void showAnimatedDialog(
                             borderSide: BorderSide.none)),
                     items: [
                       DropdownMenuItem(
-                        value: 'Per Unit',
+                        value: 'd',
                         child: Text(
                           'Per Unit',
                           style: TextStyle(
@@ -145,30 +150,30 @@ void showAnimatedDialog(
                         ),
                       ),
                       const DropdownMenuItem(
-                        value: 'Gros',
+                        value: 'g',
                         child: Text('Wholesale'),
                       ),
                       const DropdownMenuItem(
-                        value: 'Super Gros',
+                        value: 'sg',
                         child: Text('Super Wholesale'),
                       ),
                     ],
                     onChanged: (value) {
                       controller.selectedPriceOption.value = value!;
                       // exiger le client avec min qnt
-                      if (value == 'Per Unit') {
-                        controller.quantityController.text = '1';
-                        controller.quanity.value = 1;
-                      } else if (value == 'Gros') {
+                      // if (value == 'd') {
+                      //   controller.quantityController.text = '1';
+                      //   controller.quanity.value = 1;
+                      // }
+                        if (value == 'g' && controller.quanity.value < product.minQntG) {
                         controller.quantityController.text =
                             product.minQntG.toString();
                         controller.quanity.value = product.minQntG;
-                      } else if (value == 'Super Gros') {
+                      } else if (value == 'sg' && controller.quanity.value < product.minQntSG) {
                         controller.quantityController.text =
                             product.minQntG.toString();
                         controller.quanity.value = product.minQntSG;
                       }
-                      controller.update();
                     },
                   ),
                 ),
@@ -178,6 +183,7 @@ void showAnimatedDialog(
                 ),
                 SizedBox(height: 30.h),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'Totale price : ',
@@ -186,10 +192,9 @@ void showAnimatedDialog(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(width: 8.w),
                     Obx(
                       () => Text(
-                        '${(controller.quanity * (controller.selectedPriceOption.value == 'Per Unit' ? product.priceD : controller.selectedPriceOption.value == 'Super Gros' ? product.priceG : product.priceSG)).toString()} Da',
+                        '${(controller.quanity * (controller.selectedPriceOption.value == 'd' ? product.priceD : controller.selectedPriceOption.value == 'sg' ? product.priceG : product.priceSG)).toString()} Da',
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -203,18 +208,21 @@ void showAnimatedDialog(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     AppButton(
-                      text: 'Cancel',
+                        text: 'Cancel',
+                        height: 40.h,
+                        width: 125.w,
+                        textSize: 15.sp,
+                        color: AppColor.deleteColor,
+                        onTap: () {
+                          Get.back();
+                          Get.find<ProductController>().resetData();
+                        }),
+                    AppButton(
+                      text: text,
+                      onTap: confirmTap,
                       height: 40.h,
                       width: 125.w,
                       textSize: 15.sp,
-                      color: AppColor.deleteColor,
-                      onTap: () => Get.back(),
-                    ),
-                    AppButton(
-                      text: text,
-                      height: 40.h,
-                      width: 125.w,
-                      textSize: 13.sp,
                       gradient: const LinearGradient(
                           colors: [AppColor.darkBlue, AppColor.greencolor]),
                     ),
@@ -276,18 +284,16 @@ class DialogueFormField extends StatelessWidget {
             int? newQuantity = int.tryParse(value);
 
             if (newQuantity != null &&
-                ((controller.selectedPriceOption.value == 'Per Unit') ||
-                    (controller.selectedPriceOption.value == 'Gros' &&
+                ((controller.selectedPriceOption.value == 'd') ||
+                    (controller.selectedPriceOption.value == 'g' &&
                         newQuantity >= product.minQntG) ||
-                    ((controller.selectedPriceOption.value == 'Super Gros' &&
+                    ((controller.selectedPriceOption.value == 'sg' &&
                         newQuantity >= product.minQntSG)))) {
               controller.quanity.value = int.parse(value);
             } else {
               controller.quantityController.text =
                   controller.quanity.toString();
             }
-            print('qnt : ${controller.quanity}');
-            print('value : $value');
           },
         ),
       ),

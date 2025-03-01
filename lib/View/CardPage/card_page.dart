@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:market_app/Controller/card_controller.dart';
 import 'package:market_app/View/CardPage/commonW/card_products.dart';
 import 'package:market_app/View/CardPage/commonW/card_top_sect.dart';
 import 'package:market_app/View/CardPage/commonW/down_card_page.dart';
@@ -9,6 +11,7 @@ class CardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(CardController());
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(

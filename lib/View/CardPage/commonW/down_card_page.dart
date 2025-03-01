@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:market_app/Controller/card_controller.dart';
 import 'package:market_app/Core/Color/app_color.dart';
 import 'package:market_app/Core/Shared%20widgets/app_button.dart';
 
@@ -41,14 +43,16 @@ class DownCardPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  '18000 Da',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                GetBuilder<CardController>(builder: (controller) {
+                  return Text(
+                    '${controller.calculateTotalPrice()} Da',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                }),
               ],
             ),
             SizedBox(height: 15.h),

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 class ProductModel {
-  final int? id;
+  final int id;
   final String name;
   final String? categorieName;
   final String? image;
@@ -13,7 +13,7 @@ class ProductModel {
   final int minQntSG;
 
   ProductModel({
-    this.id,
+    required this.id,
     required this.name,
     this.categorieName,
     this.image,
@@ -47,5 +47,20 @@ class ProductModel {
         minQntSG: data['min_qnt_sg'] is int
             ? data['min_qnt_sg']
             : int.parse(data['min_qnt_sg']));
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'categorie_name': categorieName,
+      'image': image,
+      'price_d': priceD,
+      'price_g': priceG,
+      'price_sg': priceSG,
+      'min_qnt_g': minQntG,
+      'min_qnt_sg': minQntSG,
+      'is_favorite': isFavorite.value == true ? 1 : 0
+    };
   }
 }

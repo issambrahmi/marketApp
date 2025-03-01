@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:market_app/Controller/product_controller.dart';
 import 'package:market_app/Core/Color/app_color.dart';
+import 'package:market_app/Core/Services/hive_services.dart';
 import 'package:market_app/Core/Shared%20widgets/product_qnt_dialogue.dart';
 import 'package:market_app/Model/Models/product_model.dart';
 
@@ -42,10 +43,10 @@ class ProductCartHome extends StatelessWidget {
                   onTap: () {
                     if (product.isFavorite.value == false) {
                       Get.find<ProductController>()
-                          .addProductToFavorite(product.id!, context, index);
+                          .addProductToFavorite(product.id, context, index);
                     } else {
-                      Get.find<ProductController>()
-                          .deleteProductFromFavorite(product.id!, context, index);
+                      Get.find<ProductController>().deleteProductFromFavorite(
+                          product.id, context, index);
                     }
                   },
                   child: Container(
@@ -60,12 +61,15 @@ class ProductCartHome extends StatelessWidget {
                           colors: [AppColor.darkBlue, AppColor.greencolor]),
                     ),
                     child: Center(
-                      child: Obx(()=> Icon(  product.isFavorite.value == false?
-                        Icons.favorite_outline_rounded : Icons.favorite_sharp,
+                        child: Obx(
+                      () => Icon(
+                        product.isFavorite.value == false
+                            ? Icons.favorite_outline_rounded
+                            : Icons.favorite_sharp,
                         color: Colors.white,
                         size: 17.sp,
-                      ),)
-                    ),
+                      ),
+                    )),
                   ),
                 ),
               )
@@ -99,8 +103,24 @@ class ProductCartHome extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () => {
-                    Get.find<ProductController>().resetData(),
-                    showAnimatedDialog(context, product, 'Add to cart')
+                    // Get.find<ProductController>().resetData(),
+                    productQntDialogue(
+                        context: context,
+                        product: product,
+                        text: 'Confirm',
+                        confirmTap: () async {
+                          ProductController controller =
+                              Get.find<ProductController>();
+                          if (!await HiveServices.testIfProductExistInCard(
+                              product.id)) {
+                            HiveServices.addProductToCard({
+                              'product': product.toJson(),
+                              'type': controller.selectedPriceOption.value,
+                              'qnt': controller.quanity.value
+                            });
+                            Get.back();
+                          }
+                        }),
                   },
                   child: Container(
                     height: 28.sp,

@@ -9,12 +9,13 @@ import 'package:http/http.dart' as http;
 import 'package:market_app/main.dart';
 
 class ProductController extends GetxController {
-  RxString selectedPriceOption = 'Per Unit'.obs;
+  RxString selectedPriceOption = 'd'.obs;
   RxInt quanity = 1.obs;
   late int totalPrice;
   late TextEditingController quantityController;
 
   List<int> favoritesProducts = [];
+  List<ProductModel> cardProducts = [];
 
   @override
   void onInit() {
@@ -26,7 +27,7 @@ class ProductController extends GetxController {
 
   void resetData() {
     quanity.value = 1;
-    selectedPriceOption.value = 'Per Unit';
+    selectedPriceOption.value = 'd';
     quantityController.text = '1';
   }
 
@@ -36,9 +37,9 @@ class ProductController extends GetxController {
   }
 
   void minus(ProductModel product) {
-    if ((selectedPriceOption.value == 'Per Unit' && quanity > 1) ||
-        (selectedPriceOption.value == 'Gros' && quanity > product.minQntG) ||
-        (selectedPriceOption.value == 'Super Gros' &&
+    if ((selectedPriceOption.value == 'd' && quanity > 1) ||
+        (selectedPriceOption.value == 'g' && quanity > product.minQntG) ||
+        (selectedPriceOption.value == 'sg' &&
             quanity > product.minQntSG)) {
       quanity--;
       quantityController.text = quanity.toString();
@@ -49,7 +50,7 @@ class ProductController extends GetxController {
       int productId, BuildContext context, int index) async {
     //
     AppSnackBar(context, 'product added to favorites');
-    Get.find<HomePageController>().products[index].isFavorite!.value = true;
+    Get.find<HomePageController>().products[index].isFavorite.value = true;
 
     try {
       final response = await http.post(Uri.parse(AppLinks.addProductToFavorite),
@@ -66,7 +67,7 @@ class ProductController extends GetxController {
       debugPrint('** $e');
       // ignore: use_build_context_synchronously
       AppSnackBar(context, 'product failed to add to favorites');
-      Get.find<HomePageController>().products[index].isFavorite!.value = false;
+      Get.find<HomePageController>().products[index].isFavorite.value = false;
     }
   }
 
@@ -83,7 +84,7 @@ class ProductController extends GetxController {
               },
               body: jsonEncode({'clientId': userId, 'productId': productId}));
       if (response.statusCode == 200) {
-       // HiveServices.deleteProuctFromFavoriteLocaly(1);
+        // HiveServices.deleteProuctFromFavoriteLocaly(1);
       } else {
         throw Exception();
       }
@@ -91,7 +92,7 @@ class ProductController extends GetxController {
       debugPrint('** $e');
       // ignore: use_build_context_synchronously
       AppSnackBar(context, 'failed to delete from favorites');
-      Get.find<HomePageController>().products[index].isFavorite!.value = true;
+      Get.find<HomePageController>().products[index].isFavorite.value = true;
     }
   }
 

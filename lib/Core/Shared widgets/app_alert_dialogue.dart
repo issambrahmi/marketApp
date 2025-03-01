@@ -7,7 +7,8 @@ import 'package:market_app/Core/Shared%20widgets/app_button.dart';
 void appAlertDialogue(
     {required BuildContext context,
     required String text,
-    required double height}) {
+    required double height,
+    required void Function()? confirmTap}) {
   showGeneralDialog(
       context: context,
       barrierDismissible: true,
@@ -54,6 +55,7 @@ void appAlertDialogue(
                         height: 40.h,
                         width: 125.w,
                         textSize: 13.sp,
+                        onTap: confirmTap,
                         gradient: const LinearGradient(
                             colors: [AppColor.darkBlue, AppColor.greencolor]),
                       ),

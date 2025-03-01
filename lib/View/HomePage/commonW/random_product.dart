@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:market_app/Controller/home_page_controller.dart';
 import 'package:market_app/Core/Shared%20widgets/app_circle_indicator.dart';
-import 'package:market_app/View/HomePage/commonW/product_card.dart';
+import 'package:market_app/View/HomePage/commonW/product_card_home.dart';
 
 class RandomProduct extends StatelessWidget {
   const RandomProduct({super.key});

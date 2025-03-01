@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:market_app/Controller/card_controller.dart';
 import 'package:market_app/Core/Color/app_color.dart';
+import 'package:market_app/Core/Services/hive_services.dart';
 import 'package:market_app/Core/Shared%20widgets/app_alert_dialogue.dart';
 
 class CardTopSect extends StatelessWidget {
@@ -42,6 +44,12 @@ class CardTopSect extends StatelessWidget {
             onTap: () => appAlertDialogue(
                 context: context,
                 height: 200.h,
+                confirmTap: () {
+                  HiveServices.clearCard();
+                  Get.find<CardController>().cardItems = [];
+                  Get.find<CardController>().update();
+                  Get.back();
+                },
                 text:
                     'All product will be deleted , are you sure u want do clear cart'),
             child: Container(
@@ -49,7 +57,7 @@ class CardTopSect extends StatelessWidget {
               width: 80.w,
               decoration: BoxDecoration(
                 color: AppColor.deleteColor,
-                borderRadius: BorderRadius.circular(100),
+                borderRadius: BorderRadius.circular(10),
               ),
               child: Center(
                 child: Text(
@@ -60,6 +68,24 @@ class CardTopSect extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
+              ),
+            ),
+          ),
+          Container(
+            height: 25.h,
+            width: 80.w,
+            decoration: BoxDecoration(
+              color: AppColor.greencolor,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(
+              child: Text(
+                'Save',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
             ),
           ),
