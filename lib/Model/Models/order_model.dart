@@ -55,9 +55,19 @@ class OrderItemModel {
     return OrderItemModel(
       id: data['id'],
       // orderId: data['order_id'],
-      product: ProductModel.fromMap(data['product'].cast<String,dynamic>()),
+      product: ProductModel.fromMap(data['product'].cast<String, dynamic>()),
       type: data['type'],
       qnt: data['qnt'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'product':
+          product.toJson(), // Assuming ProductModel has toJson implemented
+      'type': type,
+      'qnt': qnt,
+    };
   }
 }

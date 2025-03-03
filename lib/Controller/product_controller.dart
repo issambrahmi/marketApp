@@ -59,7 +59,7 @@ class ProductController extends GetxController {
           },
           body: jsonEncode({'clientId': userId, 'productId': productId}));
       if (response.statusCode == 200) {
-        //HiveServices.addProuctToFavoriteLocaly(productId);
+        //HiveServices.addProuctToFavoriteLocaly(productId);//
       } else {
         throw Exception();
       }

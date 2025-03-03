@@ -33,6 +33,7 @@ class HiveServices {
     await userBox.close();
   }
 
+  ////////////////// favorite ///////////////////
   static addProuctToFavoriteLocaly(int productId) async {
     final productBox = await Hive.openBox('favorite_box');
     await productBox.add(productId);
@@ -49,10 +50,26 @@ class HiveServices {
     final productBox = await Hive.openBox('favorite_box');
     return productBox.values.cast<int>().toList();
   }
+  ////////////////// favorite ///////////////////
+
+  ////////////////// Card ///////////////////
 
   static void addProductToCard(Map product) async {
     final productBox = await Hive.openBox('card_products_box');
     await productBox.add(product);
+    await productBox.close();
+  }
+
+  static void deleteProductFromCard(int index) async {
+    final productBox = await Hive.openBox('card_products_box');
+
+    productBox.deleteAt(index);
+    await productBox.close();
+  }
+
+  static void editProductInCard(Map product, int index) async {
+    final productBox = await Hive.openBox('card_products_box');
+    await productBox.putAt(index, product);
     await productBox.close();
   }
 
@@ -74,13 +91,6 @@ class HiveServices {
   static void clearCard() async {
     final productBox = await Hive.openBox('card_products_box');
     await productBox.clear();
-    await productBox.close();
-  }
-
-  static void deleteProductFromCard(int index) async {
-    final productBox = await Hive.openBox('card_products_box');
-
-    productBox.deleteAt(index);
     await productBox.close();
   }
 }

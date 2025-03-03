@@ -1,9 +1,15 @@
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:market_app/Core/Constantes/app_links.dart';
 import 'package:market_app/Core/Services/hive_services.dart';
 import 'package:market_app/Model/Models/order_model.dart';
+import 'package:http/http.dart' as http;
 
 class CardController extends GetxController {
   List<OrderItemModel> cardItems = [];
+  RxList editedItems = [].obs;
 
   @override
   void onInit() {
@@ -40,5 +46,34 @@ class CardController extends GetxController {
                   : i.product.priceSG);
     }
     return price;
+  }
+
+  void addItemToEditedItems(int index) {
+    if (!editedItems.contains(index)) {
+      editedItems.add(index);
+    }
+  }
+
+  void saveChanges() {
+    for (var editedItem in editedItems) {
+      HiveServices.editProductInCard(
+          cardItems[editedItem].toJson(), editedItem);
+    }
+    editedItems.clear();
+  }
+
+  void confirmOrder() async {
+    try {
+      await http.post(Uri.parse(AppLinks.addOrder),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: jsonEncode({'orderData': {
+            'client_id' : 2,
+            
+          }, 'items': {}}));
+    } catch (e) {
+      debugPrint('** $e');
+    }
   }
 }

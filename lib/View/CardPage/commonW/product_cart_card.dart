@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:market_app/Controller/card_controller.dart';
-import 'package:market_app/Controller/home_page_controller.dart';
 import 'package:market_app/Controller/product_controller.dart';
 import 'package:market_app/Core/Color/app_color.dart';
 import 'package:market_app/Core/Services/hive_services.dart';
@@ -84,7 +83,9 @@ class OrderItemCard extends StatelessWidget {
                       height: 30.sp,
                       width: 30.sp,
                       decoration: BoxDecoration(
-                          color: AppColor.greencolor,
+                          //color: AppColor.greencolor,
+                          gradient: const LinearGradient(
+                              colors: [AppColor.darkBlue, AppColor.greencolor]),
                           borderRadius: BorderRadius.circular(10)),
                       child: GestureDetector(
                         onTap: () => productQntDialogue(
@@ -99,11 +100,13 @@ class OrderItemCard extends StatelessWidget {
                                   Get.find<ProductController>();
                               if (controller.quanity.value != item.qnt) {
                                 item.qnt = controller.quanity.value;
+                                cardController.addItemToEditedItems(index);
                               }
                               if (controller.selectedPriceOption.value !=
                                   item.type) {
                                 item.type =
                                     controller.selectedPriceOption.value;
+                                cardController.addItemToEditedItems(index);
                               }
                               controller.resetData();
                               cardController.update();
@@ -164,7 +167,10 @@ class OrderItemCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     InkWell(
-                      onTap: () => cardController.minusQnt(index),
+                      onTap: () {
+                        cardController.minusQnt(index);
+                        cardController.addItemToEditedItems(index);
+                      },
                       child: Container(
                         height: 30.sp,
                         width: 30.sp,
@@ -194,7 +200,10 @@ class OrderItemCard extends StatelessWidget {
                     }),
                     SizedBox(width: 10.w),
                     InkWell(
-                      onTap: () => cardController.plusQnt(index),
+                      onTap: () {
+                        cardController.plusQnt(index);
+                        cardController.addItemToEditedItems(index);
+                      },
                       child: Container(
                         height: 30.sp,
                         width: 30.sp,

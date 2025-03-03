@@ -64,6 +64,7 @@ class DownCardPage extends StatelessWidget {
               gradient: const LinearGradient(
                 colors: [AppColor.darkBlue, AppColor.greencolor],
               ),
+              onTap: ()=>Get.find<CardController>().confirmOrder(),
             ),
           ],
         ),
