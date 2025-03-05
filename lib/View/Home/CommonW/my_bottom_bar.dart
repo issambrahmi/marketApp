@@ -5,14 +5,14 @@ import 'package:get/get.dart';
 import 'package:market_app/Controller/home_controller.dart';
 import 'package:market_app/Core/Color/app_color.dart';
 
-class MyBottomAppBar extends StatefulWidget {
-  const MyBottomAppBar({super.key});
+class AppBottomAppBar extends StatefulWidget {
+  const AppBottomAppBar({super.key});
 
   @override
-  State<MyBottomAppBar> createState() => _MyBottomAppBarState();
+  State<AppBottomAppBar> createState() => _AppBottomAppBarState();
 }
 
-class _MyBottomAppBarState extends State<MyBottomAppBar>
+class _AppBottomAppBarState extends State<AppBottomAppBar>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {

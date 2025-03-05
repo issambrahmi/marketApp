@@ -53,37 +53,39 @@ class CardTopSect extends StatelessWidget {
                   fontSize: 22.sp,
                 ),
               ),
-              GestureDetector(
-                onTap: () => appAlertDialogue(
-                    context: context,
-                    height: 200.h,
-                    confirmTap: () {
-                      HiveServices.clearCard();
-                      Get.find<CardController>().cardItems = [];
-                      Get.find<CardController>().update();
-                      Get.back();
-                    },
-                    text:
-                        'All product will be deleted , are you sure u want do clear cart'),
-                child: Container(
-                  height: 25.h,
-                  width: 80.w,
-                  decoration: BoxDecoration(
-                    color: AppColor.deleteColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'clear',
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
+              Obx(() => Get.find<CardController>().cardItems.isNotEmpty
+                  ? GestureDetector(
+                      onTap: () => appAlertDialogue(
+                          context: context,
+                          height: 200.h,
+                          confirmTap: () {
+                            HiveServices.clearCard();
+                            Get.find<CardController>().cardItems.clear();
+                            Get.find<CardController>().update();
+                            Get.back();
+                          },
+                          text:
+                              'All product will be deleted , are you sure u want do clear cart'),
+                      child: Container(
+                        height: 25.h,
+                        width: 80.w,
+                        decoration: BoxDecoration(
+                          color: AppColor.deleteColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'clear',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    )
+                  : const SizedBox()),
               if (Get.find<CardController>().editedItems.isNotEmpty)
                 InkWell(
                   onTap: () => Get.find<CardController>().saveChanges(),

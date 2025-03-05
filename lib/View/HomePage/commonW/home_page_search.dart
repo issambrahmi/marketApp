@@ -20,7 +20,8 @@ class HomePageSearch extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: AppColor.mainScreencolor),
+            //color: AppColor.mainScreencolor,
+            gradient: AppColor.secondGradient),
         child: Row(
           children: [
             Icon(
@@ -32,7 +33,9 @@ class HomePageSearch extends StatelessWidget {
               'search',
               style: TextStyle(
                 fontSize: 16.sp,
-                color: Colors.grey,
+                fontWeight: FontWeight.w500,
+                // color: Colors.grey,
+                color: Colors.black,
               ),
             )
           ],

@@ -9,13 +9,16 @@ import 'package:market_app/Model/Models/product_model.dart';
 
 class HomePageController extends GetxController {
   late TextEditingController search;
+  final ScrollController scrollController = ScrollController();
 
   List<CategorieModel> categories = [];
   List<ProductModel> products = [];
+  RxList categorieProducts = [].obs;
 
-  final ScrollController scrollController = ScrollController();
   Rx<RequestEnum> reqState = RequestEnum.start.obs;
   bool isMaxProducts = false;
+
+  RxInt selectedCategorie = 0.obs;
 
   @override
   void onInit() {
@@ -38,6 +41,15 @@ class HomePageController extends GetxController {
   void onClose() {
     search.dispose();
     super.onClose();
+  }
+
+  void changeCategorie(int index) {
+    if (index != selectedCategorie.value) {
+      selectedCategorie.value = index;
+    }
+    if (index != 0) {
+      getCategorieProducts();
+    }
   }
 
   void getData() async {
@@ -81,6 +93,28 @@ class HomePageController extends GetxController {
       }
     } catch (e) {
       debugPrint('** $e');
+    }
+  }
+
+  void getCategorieProducts() async {
+    reqState.value = RequestEnum.waiting;
+    try {
+      final response = await http.get(Uri.parse(
+          '${AppLinks.getCategorieProducts}/${categories[selectedCategorie.value - 1].id}/0'));
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        final Map data = jsonDecode(response.body)['data'];
+
+        categorieProducts.assignAll(data['products']
+            .map<ProductModel>((p) => ProductModel.fromMap(p))
+            .toList());
+        reqState.value = RequestEnum.successes;
+      } else {
+        reqState.value = RequestEnum.serverError;
+      }
+    } catch (e) {
+      debugPrint('** $e');
+      reqState.value = RequestEnum.dataError;
     }
   }
 }

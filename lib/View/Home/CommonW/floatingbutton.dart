@@ -5,16 +5,15 @@ import 'package:get/get.dart';
 import 'package:market_app/Core/Color/app_color.dart';
 import 'package:market_app/View/CardPage/card_page.dart';
 
-class MyFloatingButton extends StatelessWidget {
-  const MyFloatingButton({super.key});
+class AppFloatingButton extends StatelessWidget {
+  const AppFloatingButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
-          gradient:
-              const LinearGradient(colors: [AppColor.darkBlue, AppColor.greencolor])),
+          gradient: AppColor.primaryGradient),
       child: FloatingActionButton(
         onPressed: () => Get.to(() => const CardPage()),
         elevation: 0.0,

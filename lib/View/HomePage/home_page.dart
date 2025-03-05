@@ -26,10 +26,6 @@ class HomePage extends StatelessWidget {
           controller: controller.scrollController,
           children: [
             SizedBox(height: 10.h),
-            // HomePageTextFormFiled(
-            //   hint: 'search',
-            //   textController: controller.search,
-            // ),
             const HomePageSearch(),
             Obx(() => controller.reqState.value == RequestEnum.waiting
                 ? SizedBox(

@@ -18,5 +18,6 @@ class HomeController extends GetxController {
   void ontapIcon(int index) {
     currentPage = pages[index];
     currentIndex = index;
+    update();
   }
 }

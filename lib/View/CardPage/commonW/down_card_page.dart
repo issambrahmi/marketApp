@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:market_app/Controller/card_controller.dart';
 import 'package:market_app/Core/Color/app_color.dart';
 import 'package:market_app/Core/Shared%20widgets/app_button.dart';
+import 'package:market_app/Core/Shared%20widgets/app_circle_indicator.dart';
 
 class DownCardPage extends StatelessWidget {
   const DownCardPage({super.key});
@@ -56,16 +57,41 @@ class DownCardPage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 15.h),
-            AppButton(
-              text: 'Confirm order',
-              height: 45.h,
-              width: double.infinity,
-              textSize: 17.sp,
-              gradient: const LinearGradient(
-                colors: [AppColor.darkBlue, AppColor.greencolor],
+            InkWell(
+              onTap: () => Get.find<CardController>().confirmOrder(),
+              child: Container(
+                width: double.infinity,
+                height: 45.h,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: const LinearGradient(
+                      colors: [AppColor.darkBlue, AppColor.greencolor],
+                    )),
+                child: Center(
+                  child: Obx(() =>
+                      Get.find<CardController>().isConfirmOrderLoading.value ==
+                              true
+                          ? AppCircleIndicator(size: 12.sp)
+                          : Text(
+                              'Confirm Order',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17.sp,
+                              ),
+                            )),
+                ),
               ),
-              onTap: ()=>Get.find<CardController>().confirmOrder(),
             ),
+            // AppButton(
+            //   text: 'Confirm order',
+            //   height: 45.h,
+            //   width: double.infinity,
+            //   textSize: 17.sp,
+            //   gradient: const LinearGradient(
+            //     colors: [AppColor.darkBlue, AppColor.greencolor],
+            //   ),
+            //   onTap: () => Get.find<CardController>().confirmOrder(),
+            // ),
           ],
         ),
       ),

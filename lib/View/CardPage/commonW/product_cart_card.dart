@@ -37,31 +37,36 @@ class OrderItemCard extends StatelessWidget {
             ),
           ),
           SizedBox(width: 10.w),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 80.w,
-                child: Text(
-                  item.product.name,
-                  maxLines: 2,
+          SizedBox(
+            width: 80.w,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 80.w,
+                  child: Text(
+                    item.product.name,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  '${(item.type == 'd' ? item.product.priceD : item.type == 'g' ? item.product.priceG : item.product.priceSG) * item.qnt} Da',
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: 14.sp,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.bold,
                   ),
-                ),
-              ),
-              SizedBox(height: 10.h),
-              Text(
-                '${(item.type == 'd' ? item.product.priceD : item.type == 'g' ? item.product.priceG : item.product.priceSG) * item.qnt} Da',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
           SizedBox(width: 10.w),
           Column(

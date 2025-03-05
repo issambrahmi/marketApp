@@ -21,13 +21,21 @@ class HomePageCategories extends StatelessWidget {
         SizedBox(
           height: 35.h,
           child: ListView.separated(
-            itemCount: controller.categories.length,
+            itemCount: controller.categories.length + 1,
             scrollDirection: Axis.horizontal,
             separatorBuilder: (context, index) => SizedBox(width: 8.w),
             itemBuilder: (context, index) {
-              return CCategorieCard(
-                catName: controller.categories[index].name,
-              );
+              if (index == 0) {
+                return const CCategorieCard(
+                  catName: 'All',
+                  index: 0,
+                );
+              } else {
+                return CCategorieCard(
+                  catName: controller.categories[index - 1].name,
+                  index: index,
+                );
+              }
             },
           ),
         )
@@ -37,49 +45,37 @@ class HomePageCategories extends StatelessWidget {
 }
 
 class CCategorieCard extends StatelessWidget {
-  const CCategorieCard({super.key, required this.catName});
+  const CCategorieCard({super.key, required this.catName, required this.index});
 
   final String catName;
+  final int index;
   @override
   Widget build(BuildContext context) {
+    HomePageController controller = Get.find<HomePageController>();
     return InkWell(
-      onTap: (){},
-      child: Container(
-        padding: EdgeInsets.all(8.sp),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            gradient: const LinearGradient(colors: [
-              AppColor.darkBlue,
-              AppColor.greencolor,
-            ])
-            // color: AppColor.mainScreencolor,
+        onTap: () => controller.changeCategorie(index),
+        child: Obx(
+          () => Container(
+            padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              gradient: controller.selectedCategorie.value == index
+                  ? AppColor.primaryGradient
+                  : AppColor.thirdGradient,
             ),
-        child: Text(
-          catName,
-          style: TextStyle(
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w600,
-            color: Colors.white,
+            child: Center(
+              child: Text(
+                catName,
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                  color: controller.selectedCategorie.value == index
+                      ? Colors.white
+                      : Colors.black87,
+                ),
+              ),
+            ),
           ),
-        ),
-      ),
-    );
-    //  Column(
-    //   children: [
-    //     Container(
-    //       height: 60.h,
-    //       width: 60.h,
-    //       padding: EdgeInsets.all(4.sp),
-    //       decoration: BoxDecoration(
-    //         color: AppColor.greencolor.withOpacity(0.3),
-    //         borderRadius: BorderRadius.circular(10),
-    //       ),
-    //       child: Center(
-    //         child: Image.asset('assets/images/fruit.jpg'),
-    //       ),
-    //     ),
-    //     const Text('fruit')
-    //   ],
-    // );
+        ));
   }
 }
