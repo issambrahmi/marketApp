@@ -15,7 +15,7 @@ class HomePageSearch extends StatelessWidget {
         Get.find<HomeController>().update();
       },
       child: Container(
-        height: 50.h,
+        height: 45.h,
         width: double.infinity,
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
         decoration: BoxDecoration(

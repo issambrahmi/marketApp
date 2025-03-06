@@ -12,5 +12,7 @@ class AppColor {
   static LinearGradient secondGradient = LinearGradient(
       colors: [darkBlue.withOpacity(0.2), greencolor.withOpacity(0.9)]);
   static LinearGradient thirdGradient = LinearGradient(
-      colors: [darkBlue.withOpacity(0.2), greencolor.withOpacity(0.2)]);
+      colors: [darkBlue.withOpacity(0.3), greencolor.withOpacity(0.9)]);
+       static LinearGradient forthGradient = LinearGradient(
+      colors: [darkBlue.withOpacity(0.1), greencolor.withOpacity(0.7)]);
 }

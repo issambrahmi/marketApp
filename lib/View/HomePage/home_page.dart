@@ -27,32 +27,39 @@ class HomePage extends StatelessWidget {
           children: [
             SizedBox(height: 10.h),
             const HomePageSearch(),
-            Obx(() => controller.reqState.value == RequestEnum.waiting
-                ? SizedBox(
-                    height: 400.h, child: AppCircleIndicator(size: 20.sp))
-                : controller.reqState.value == RequestEnum.serverError
-                    ? const Center(
-                        child: Text('Server err'),
-                      )
-                    : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(height: 20.h),
-                          // const MostPopularProduct(),
-                          // const Divider(),
-                          const HomePageCategories(),
-                          // SizedBox(height: 20.h),
-                          SizedBox(height: 20.h),
-                          Text(
-                            'Products for you',
-                            style: TextStyle(
-                                fontSize: 17.sp, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 12.h),
-                          const RandomProduct(),
-                        ],
-                      )),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 20.h),
+                // const MostPopularProduct(),
+                // const Divider(),
+                const HomePageCategories(),
+                SizedBox(height: 20.h),
+                const RandomProduct(),
+              ],
+            ),
+
+            // Obx(() => controller.reqState.value == RequestEnum.waiting
+            //     ? SizedBox(
+            //         height: 400.h, child: AppCircleIndicator(size: 20.sp))
+            //     : controller.reqState.value == RequestEnum.serverError
+            //         ? const Center(
+            //             child: Text('Server err'),
+            //           )
+            //         : Column(
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             mainAxisAlignment: MainAxisAlignment.center,
+            //             children: [
+            //               SizedBox(height: 20.h),
+            //               // const MostPopularProduct(),
+            //               // const Divider(),
+            //               const HomePageCategories(),
+            //               // SizedBox(height: 20.h),
+            //               SizedBox(height: 20.h),
+            //               const RandomProduct(),
+            //             ],
+            //           )),
             SizedBox(
               height: 20.h,
             ),

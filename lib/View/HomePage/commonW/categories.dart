@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:market_app/Controller/home_page_controller.dart';
 import 'package:market_app/Core/Color/app_color.dart';
+import 'package:market_app/Model/Enums/request_enum.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class HomePageCategories extends StatelessWidget {
   const HomePageCategories({super.key});
@@ -17,28 +19,43 @@ class HomePageCategories extends StatelessWidget {
           'Categories',
           style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 12.h),
-        SizedBox(
-          height: 35.h,
-          child: ListView.separated(
-            itemCount: controller.categories.length + 1,
-            scrollDirection: Axis.horizontal,
-            separatorBuilder: (context, index) => SizedBox(width: 8.w),
-            itemBuilder: (context, index) {
-              if (index == 0) {
-                return const CCategorieCard(
-                  catName: 'All',
-                  index: 0,
-                );
-              } else {
-                return CCategorieCard(
-                  catName: controller.categories[index - 1].name,
-                  index: index,
-                );
-              }
-            },
-          ),
-        )
+        SizedBox(height: 10.h),
+        Obx(() => Skeletonizer(
+              enabled:
+                  controller.categoriesReqState.value == RequestEnum.waiting
+                      ? true
+                      : false,
+              child: SizedBox(
+                height: 35.h,
+                child: ListView.separated(
+                  itemCount:
+                      controller.categoriesReqState.value == RequestEnum.waiting
+                          ? 5
+                          : controller.categories.length + 1,
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (context, index) => SizedBox(width: 8.w),
+                  itemBuilder: (context, index) {
+                    if (controller.categoriesReqState.value ==
+                        RequestEnum.waiting) {
+                      return CCategorieCard(
+                          catName: 'alllllllll', index: index);
+                    } else {
+                      if (index == 0) {
+                        return const CCategorieCard(
+                          catName: 'All',
+                          index: 0,
+                        );
+                      } else {
+                        return CCategorieCard(
+                          catName: controller.categories[index - 1].name,
+                          index: index,
+                        );
+                      }
+                    }
+                  },
+                ),
+              ),
+            ))
       ],
     );
   }
@@ -61,7 +78,7 @@ class CCategorieCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               gradient: controller.selectedCategorie.value == index
                   ? AppColor.primaryGradient
-                  : AppColor.thirdGradient,
+                  : AppColor.forthGradient,
             ),
             child: Center(
               child: Text(

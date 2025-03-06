@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:market_app/View/HomePage/commonW/random_product.dart';
+import 'package:get/get.dart';
+import 'package:market_app/Controller/search_controller.dart';
 import 'package:market_app/View/SearchPage/commonW/search_form.dart';
+import 'package:market_app/View/SearchPage/commonW/searched_products.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put(SearchPageController());
     return Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
@@ -18,11 +21,8 @@ class SearchPage extends StatelessWidget {
             child: ListView(
               children: [
                 const SearchFormProduct(),
-                // GetBuilder<SearchDoctorController>(builder: (controller) {
-                //   return const Expanded(child: ListOfDoctorsNames());
-                // }),
-                SizedBox(height: 10.h),
-                const RandomProduct()
+                SizedBox(height: 20.h),
+                const SearchedProducts()
               ],
             ),
           ),
