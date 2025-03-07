@@ -18,12 +18,13 @@ class SearchPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(
               horizontal: 20.w,
             ),
-            child: ListView(
+            child: Column(
+              //controller: Get.find<SearchPageController>().searchedProductsScrollController,
               children: [
                 SizedBox(height: 10.h),
                 const SearchFormProduct(),
                 SizedBox(height: 20.h),
-                const SearchedProducts()
+                const Expanded(child: SearchedProducts())
               ],
             ),
           ),

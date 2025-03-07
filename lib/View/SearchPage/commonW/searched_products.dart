@@ -28,7 +28,7 @@ class SearchedProducts extends StatelessWidget {
                     : GridView.builder(
                         controller: controller.searchedProductsScrollController,
                         shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
+                       physics: const ClampingScrollPhysics(),
                         itemCount: controller.searchReqState.value ==
                                 RequestEnum.waiting
                             ? 6

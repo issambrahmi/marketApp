@@ -42,11 +42,11 @@ class ProductCartHome extends StatelessWidget {
                 child: InkWell(
                   onTap: () {
                     if (product.isFavorite.value == false) {
-                      Get.find<ProductController>()
-                          .addProductToFavorite(product.id, context, index);
+                      Get.find<ProductController>().addProductToFavorite(
+                          product.id, context, index, product);
                     } else {
                       Get.find<ProductController>().deleteProductFromFavorite(
-                          product.id, context, index);
+                          product.id, context, index, product);
                     }
                   },
                   child: Container(
@@ -118,6 +118,7 @@ class ProductCartHome extends StatelessWidget {
                               'type': controller.selectedPriceOption.value,
                               'qnt': controller.quanity.value
                             });
+                            controller.resetData();
                             Get.back();
                           }
                         }),

@@ -39,18 +39,17 @@ class ProductController extends GetxController {
   void minus(ProductModel product) {
     if ((selectedPriceOption.value == 'd' && quanity > 1) ||
         (selectedPriceOption.value == 'g' && quanity > product.minQntG) ||
-        (selectedPriceOption.value == 'sg' &&
-            quanity > product.minQntSG)) {
+        (selectedPriceOption.value == 'sg' && quanity > product.minQntSG)) {
       quanity--;
       quantityController.text = quanity.toString();
     }
   }
 
-  void addProductToFavorite(
-      int productId, BuildContext context, int index) async {
+  void addProductToFavorite(int productId, BuildContext context, int index,
+      ProductModel product) async {
     //
     AppSnackBar(context, 'product added to favorites');
-    Get.find<HomePageController>().products[index].isFavorite.value = true;
+    product.isFavorite.value = true;
 
     try {
       final response = await http.post(Uri.parse(AppLinks.addProductToFavorite),
@@ -67,14 +66,14 @@ class ProductController extends GetxController {
       debugPrint('** $e');
       // ignore: use_build_context_synchronously
       AppSnackBar(context, 'product failed to add to favorites');
-      Get.find<HomePageController>().products[index].isFavorite.value = false;
+      product.isFavorite.value = false;
     }
   }
 
-  void deleteProductFromFavorite(
-      int productId, BuildContext context, int index) async {
+  void deleteProductFromFavorite(int productId, BuildContext context, int index,
+      ProductModel product) async {
     //
-    Get.find<HomePageController>().products[index].isFavorite.value = false;
+    product.isFavorite.value = false;
     AppSnackBar(context, 'product delete from favorites');
     try {
       final response =
@@ -92,7 +91,7 @@ class ProductController extends GetxController {
       debugPrint('** $e');
       // ignore: use_build_context_synchronously
       AppSnackBar(context, 'failed to delete from favorites');
-      Get.find<HomePageController>().products[index].isFavorite.value = true;
+      product.isFavorite.value = true;
     }
   }
 

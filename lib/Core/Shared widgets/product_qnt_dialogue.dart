@@ -165,11 +165,13 @@ void productQntDialogue({
                       //   controller.quantityController.text = '1';
                       //   controller.quanity.value = 1;
                       // }
-                        if (value == 'g' && controller.quanity.value < product.minQntG) {
+                      if (value == 'g' &&
+                          controller.quanity.value < product.minQntG) {
                         controller.quantityController.text =
                             product.minQntG.toString();
                         controller.quanity.value = product.minQntG;
-                      } else if (value == 'sg' && controller.quanity.value < product.minQntSG) {
+                      } else if (value == 'sg' &&
+                          controller.quanity.value < product.minQntSG) {
                         controller.quantityController.text =
                             product.minQntG.toString();
                         controller.quanity.value = product.minQntSG;
@@ -192,12 +194,19 @@ void productQntDialogue({
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Obx(
-                      () => Text(
-                        '${(controller.quanity * (controller.selectedPriceOption.value == 'd' ? product.priceD : controller.selectedPriceOption.value == 'sg' ? product.priceG : product.priceSG)).toString()} Da',
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Obx(
+                          () => Text(
+                            '${(controller.quanity * (controller.selectedPriceOption.value == 'd' ? product.priceD : controller.selectedPriceOption.value == 'sg' ? product.priceG : product.priceSG)).toStringAsFixed(2)} Da',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
                     )

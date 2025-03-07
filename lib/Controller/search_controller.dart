@@ -28,22 +28,18 @@ class SearchPageController extends GetxController {
     namesScrollController = ScrollController();
     searchedProductsScrollController = ScrollController();
 
-    // namesScrollController.addListener(() {
-    //   if (namesScrollController.position.pixels >=
-    //           namesScrollController.position.maxScrollExtent &&
-    //       !isMaxSearchedNamesProducts) {
-    //     loadMoreNames();
-    //   }
-    // });
+    namesScrollController.addListener(() {
+      if (namesScrollController.position.pixels >=
+              namesScrollController.position.maxScrollExtent &&
+          !isMaxSearchedNamesProducts) {
+        loadMoreNames();
+      }
+    });
 
     searchedProductsScrollController.addListener(() {
-      if (!isMaxSearchedProducts) {
-        print(22);
-      }
       if (searchedProductsScrollController.position.pixels >=
           searchedProductsScrollController.position.maxScrollExtent) {
-        print(1);
-        //loadMoreSearchedProducts();
+        loadMoreSearchedProducts();
       }
     });
 
@@ -54,6 +50,7 @@ class SearchPageController extends GetxController {
   void onClose() {
     search.dispose();
     namesScrollController.dispose();
+    searchedProductsScrollController.dispose();
     _debounce?.cancel();
     super.onClose();
   }
@@ -165,7 +162,6 @@ class SearchPageController extends GetxController {
   }
 
   void loadMoreSearchedProducts() async {
-    print(111);
     try {
       final response = await http.get(Uri.parse(
           '${AppLinks.searchForProoducts}/${search.text.trim()}/${searchedProducts.length}'));
