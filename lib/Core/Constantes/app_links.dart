@@ -10,11 +10,12 @@ class AppLinks {
   ///////////////////////// products //////////////////////////////////
 
   static const String getProducts = '$adminLink/products';
-  static const String getCategorieProducts =
-      '$adminLink/products/categorie';
+  static const String getCategorieProducts = '$adminLink/products/categorie';
   static const String addProductToFavorite = '$adminLink/products/favorite';
   static const String deleteProductFromFavorite =
       '$adminLink/products/favorite';
+  static const String searchForProoducts = '$adminLink/products/search';
+  static const String searchForProductsNames = '$adminLink/products/search/name';
 
   /////////////////////////// orders ////////////////////////////
   static const String addOrder = '$adminLink/orders';

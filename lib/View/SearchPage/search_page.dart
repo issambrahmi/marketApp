@@ -20,6 +20,7 @@ class SearchPage extends StatelessWidget {
             ),
             child: ListView(
               children: [
+                SizedBox(height: 10.h),
                 const SearchFormProduct(),
                 SizedBox(height: 20.h),
                 const SearchedProducts()

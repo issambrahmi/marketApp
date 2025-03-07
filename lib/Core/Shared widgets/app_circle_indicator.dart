@@ -8,7 +8,7 @@ class AppCircleIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: CircularProgressIndicator(
-        color: AppColor.greencolor,
+        color: Colors.black,
         value: size,
       ),
     );
